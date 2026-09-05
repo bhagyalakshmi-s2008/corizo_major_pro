@@ -1,0 +1,1576 @@
+{
+  "users": [
+    {
+      "id": "usr_admin",
+      "name": "System Administrator",
+      "email": "admin@ecommerce.com",
+      "password": "admin123",
+      "role": "admin",
+      "phone": "+91 98765 43210",
+      "address": "100 Tech Park, Hitech City, Hyderabad, Telangana 500081",
+      "walletBalance": 10000,
+      "coins": 1200,
+      "vipTier": "Platinum",
+      "dailyClaimStreak": 5,
+      "dailyLastClaimed": null,
+      "walletTransactions": [
+        {
+          "id": "wtx_admin_1",
+          "type": "credit",
+          "amount": 10000,
+          "description": "Admin Preload Balance",
+          "date": "2026-08-30T10:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-01-10T08:30:00.000Z"
+    },
+    {
+      "id": "usr_alex",
+      "name": "Alex Morgan",
+      "email": "user@ecommerce.com",
+      "password": "user123",
+      "role": "customer",
+      "phone": "+91 98490 12345",
+      "address": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "walletBalance": 6500,
+      "coins": 38559,
+      "vipTier": "Platinum",
+      "dailyClaimStreak": 3,
+      "dailyLastClaimed": null,
+      "walletTransactions": [
+        {
+          "id": "wtx_1788166708840",
+          "type": "credit",
+          "amount": 2000,
+          "description": "🎁 Redeemed Gift Card Voucher [FESTIVE2000]",
+          "date": "2026-08-31T08:58:28.840Z"
+        },
+        {
+          "id": "wtx_1788166708810",
+          "type": "credit",
+          "amount": 1000,
+          "description": "💳 Instant Wallet Top-Up via UPI/Card",
+          "date": "2026-08-31T08:58:28.810Z"
+        },
+        {
+          "id": "wtx_1",
+          "type": "credit",
+          "amount": 3500,
+          "description": "Welcome Cashback & Balance",
+          "date": "2026-08-30T10:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-02-15T10:15:00.000Z"
+    },
+    {
+      "id": "usr_sarah",
+      "name": "Sarah Jenkins",
+      "email": "sarah@example.com",
+      "password": "sarah123",
+      "role": "customer",
+      "phone": "+91 97000 54321",
+      "address": "Flat 302, Indiranagar, Bangalore, Karnataka 560038",
+      "walletBalance": 1500,
+      "coins": 200,
+      "vipTier": "Silver",
+      "dailyClaimStreak": 1,
+      "dailyLastClaimed": null,
+      "walletTransactions": [],
+      "createdAt": "2026-03-01T14:20:00.000Z"
+    },
+    {
+      "id": "usr_1788012654589_gtoq",
+      "name": "kumar",
+      "email": "kumaraswamyk259@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "phone": "9550203943",
+      "address": "venkatapuram  Banganapalli  Nandyal",
+      "walletBalance": 2000,
+      "coins": 350,
+      "vipTier": "Silver",
+      "dailyClaimStreak": 2,
+      "dailyLastClaimed": null,
+      "walletTransactions": [],
+      "createdAt": "2026-08-29T14:10:54.589Z"
+    },
+    {
+      "id": "usr_1788167359898_4k8p",
+      "name": "kumar",
+      "email": "kumaraswamy@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "phone": "9550203943",
+      "address": "518124",
+      "walletBalance": 500,
+      "coins": 20609,
+      "vipTier": "Platinum",
+      "dailyClaimStreak": 0,
+      "dailyLastClaimed": null,
+      "walletTransactions": [
+        {
+          "id": "wtx_1788167359898",
+          "type": "credit",
+          "amount": 500,
+          "description": "🎉 New Member Registration Bonus",
+          "date": "2026-08-31T09:09:19.898Z"
+        }
+      ],
+      "createdAt": "2026-08-31T09:09:19.898Z"
+    }
+  ],
+  "categories": [
+    "All",
+    "Mobiles",
+    "Laptops",
+    "Headphones & Earphones",
+    "Smart Watches",
+    "Televisions",
+    "Clothing",
+    "Shoes",
+    "Bags",
+    "Books",
+    "Home & Furniture",
+    "Kitchen Appliances",
+    "Gaming",
+    "Cameras",
+    "Electronic Accessories",
+    "Beauty & Personal Care"
+  ],
+  "products": [
+    {
+      "id": "prod_mob_1",
+      "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+      "category": "Mobiles",
+      "price": 134900,
+      "originalPrice": 159900,
+      "rating": 5,
+      "reviewsCount": 250,
+      "stock": 213,
+      "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80",
+        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&q=80"
+      ],
+      "badge": "Flagship",
+      "description": "Forged in aerospace-grade titanium with revolutionary A17 Pro chip, customizable Action button, 48MP main camera system with 5x telephoto optical zoom, and USB-C with USB 3 speeds.",
+      "specs": {
+        "Processor": "A17 Pro Chip (6-Core CPU)",
+        "Display": "6.7-inch Super Retina XDR OLED (120Hz ProMotion)",
+        "Camera": "48MP Main + 12MP Ultra-Wide + 12MP 5x Telephoto",
+        "Storage": "256GB NVMe",
+        "Battery": "Up to 29 hours video playback"
+      },
+      "reviews": [
+        {
+          "id": "rev_1788169911648",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-31T09:51:51.648Z"
+        },
+        {
+          "id": "rev_1788166715658",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-31T08:58:35.658Z"
+        },
+        {
+          "id": "rev_1788150000430",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-31T04:20:00.430Z"
+        },
+        {
+          "id": "rev_1788025986721",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T17:53:06.721Z"
+        },
+        {
+          "id": "rev_1788025808552",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T17:50:08.552Z"
+        },
+        {
+          "id": "rev_1788025512879",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T17:45:12.880Z"
+        },
+        {
+          "id": "rev_1788025508898",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T17:45:08.898Z"
+        },
+        {
+          "id": "rev_1788025417191",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T17:43:37.191Z"
+        },
+        {
+          "id": "rev_1788020238637",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T16:17:18.637Z"
+        },
+        {
+          "id": "rev_1788011728872",
+          "userName": "Alex Morgan",
+          "userId": "usr_alex",
+          "rating": 5,
+          "title": "Sensational product!",
+          "comment": "The build quality is exceptional and noise cancellation is incredible.",
+          "createdAt": "2026-08-29T13:55:28.872Z"
+        },
+        {
+          "id": "rev_mob_1",
+          "userName": "Vikram Sethi",
+          "rating": 5,
+          "title": "Phenomenal build and camera",
+          "comment": "Titanium makes it noticeably lighter and 5x zoom is stunning.",
+          "createdAt": "2026-02-12T10:00:00.000Z"
+        }
+      ],
+      "featured": true
+    },
+    {
+      "id": "prod_mob_2",
+      "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB/256GB)",
+      "category": "Mobiles",
+      "price": 119999,
+      "originalPrice": 134999,
+      "rating": 4.8,
+      "reviewsCount": 185,
+      "stock": 25,
+      "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80"
+      ],
+      "badge": "Galaxy AI",
+      "description": "Galaxy AI power in your hands with built-in S-Pen, 200MP Quad Tele camera system, flat 6.8-inch QHD+ Dynamic AMOLED 2X display with 2600 nits brightness, and Snapdragon 8 Gen 3 for Galaxy.",
+      "specs": {
+        "Processor": "Snapdragon 8 Gen 3 for Galaxy",
+        "RAM & Storage": "12GB RAM, 256GB Storage",
+        "Display": "6.8-inch QHD+ Dynamic AMOLED 2X (1-120Hz)",
+        "Camera": "200MP + 50MP + 12MP + 10MP Quad Camera",
+        "Battery": "5000mAh with 45W Fast Charging"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_mob_3",
+      "title": "OnePlus 12 5G (Flowy Emerald, 16GB/512GB)",
+      "category": "Mobiles",
+      "price": 64999,
+      "originalPrice": 69999,
+      "rating": 4.7,
+      "reviewsCount": 142,
+      "stock": 40,
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=80"
+      ],
+      "badge": "Best Value Flagship",
+      "description": "4th Gen Hasselblad Camera system, 2K 120Hz ProXDR display, 5400mAh battery with 100W SUPERVOOC fast charging and 50W wireless AIRVOOC charging.",
+      "specs": {
+        "Processor": "Qualcomm Snapdragon 8 Gen 3",
+        "RAM & Storage": "16GB LPDDR5X + 512GB UFS 4.0",
+        "Camera": "50MP Sony LYT-808 + 64MP 3X Periscope + 48MP Ultra-Wide",
+        "Charging": "100W Wired + 50W Wireless"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_lap_1",
+      "title": "Apple MacBook Pro 16\" M3 Max (36GB RAM, 1TB SSD)",
+      "category": "Laptops",
+      "price": 189900,
+      "originalPrice": 219900,
+      "rating": 4.9,
+      "reviewsCount": 115,
+      "stock": 14,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",
+        "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80"
+      ],
+      "badge": "Pro Power",
+      "description": "Unrivaled performance with Apple M3 Max chip with 14-core CPU and 30-core GPU, Liquid Retina XDR display with 1600 nits peak brightness, and up to 22 hours battery life.",
+      "specs": {
+        "Chip": "Apple M3 Max (14-Core CPU, 30-Core GPU)",
+        "Memory": "36GB Unified Memory",
+        "Storage": "1TB Superfast PCIe SSD",
+        "Display": "16.2-inch Liquid Retina XDR (3456x2234)",
+        "Battery": "Up to 22 Hours"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_lap_2",
+      "title": "ASUS ROG Zephyrus G16 OLED Gaming Laptop (RTX 4080)",
+      "category": "Laptops",
+      "price": 149990,
+      "originalPrice": 179990,
+      "rating": 4.8,
+      "reviewsCount": 87,
+      "stock": 12,
+      "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&q=80"
+      ],
+      "badge": "Ultimate Gaming",
+      "description": "Ultra-thin CNC aluminum chassis packing Intel Core Ultra 9 processor, NVIDIA GeForce RTX 4080 12GB GPU, and 2.5K 240Hz/0.2ms OLED ROG Nebula Display.",
+      "specs": {
+        "Processor": "Intel Core Ultra 9 185H (16 Cores, 22 Threads)",
+        "Graphics": "NVIDIA GeForce RTX 4080 (12GB GDDR6)",
+        "Display": "16-inch 2.5K 240Hz OLED (100% DCI-P3)",
+        "RAM & SSD": "32GB LPDDR5X, 1TB PCIe 4.0 NVMe SSD"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_lap_3",
+      "title": "Dell XPS 15 InfinityEdge (Intel Core Ultra 7, 32GB RAM)",
+      "category": "Laptops",
+      "price": 114990,
+      "originalPrice": 129990,
+      "rating": 4.7,
+      "reviewsCount": 64,
+      "stock": 18,
+      "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&q=80"
+      ],
+      "badge": "Creator Choice",
+      "description": "Stunning machined aluminum and carbon fiber palm rest, 15.6-inch 4-sided InfinityEdge display, RTX 4060 graphics, and quad-speaker studio sound.",
+      "specs": {
+        "CPU": "Intel Core Ultra 7 155H",
+        "RAM": "32GB DDR5 Dual Channel",
+        "Storage": "1TB M.2 PCIe NVMe",
+        "Display": "15.6-inch FHD+ (1920x1200) 500-Nit Anti-Glare"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_aud_1",
+      "title": "Sony WH-1000XM5 Wireless Industry-Leading ANC Headphones",
+      "category": "Headphones & Earphones",
+      "price": 26990,
+      "originalPrice": 34990,
+      "rating": 4.9,
+      "reviewsCount": 310,
+      "stock": 35,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80"
+      ],
+      "badge": "Top Rated Audio",
+      "description": "Two processors and 8 microphones for unparalleled noise cancellation, Auto NC Optimizer, 30-hour battery, crystal clear hands-free calling with 4 beamforming mics.",
+      "specs": {
+        "Noise Cancellation": "Auto NC Optimizer Dual V1 Processor",
+        "Battery Life": "30 Hours with ANC (Quick charge 3 min = 3 hrs)",
+        "Audio Codecs": "LDAC, AAC, SBC, Hi-Res Wireless",
+        "Weight": "250g Ultra-Comfort"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_aud_2",
+      "title": "Apple AirPods Pro (2nd Gen) with MagSafe Case (USB-C)",
+      "category": "Headphones & Earphones",
+      "price": 19900,
+      "originalPrice": 24900,
+      "rating": 4.9,
+      "reviewsCount": 280,
+      "stock": 45,
+      "image": "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=800&q=80"
+      ],
+      "badge": "Bestseller",
+      "description": "Apple-designed H2 chip delivers up to 2x more Active Noise Cancellation, Adaptive Audio, Transparency mode, and Personalized Spatial Audio with dynamic head tracking.",
+      "specs": {
+        "Chip": "Apple H2 Headphone Chip",
+        "Battery": "Up to 6 hours listening (30 hours with case)",
+        "Resistance": "IP54 Dust, Sweat, and Water Resistant",
+        "Connector": "USB-C MagSafe Case with Speaker & Lanyard Loop"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_wat_1",
+      "title": "Apple Watch Ultra 2 GPS + Cellular (Titanium Orange Loop)",
+      "category": "Smart Watches",
+      "price": 84900,
+      "originalPrice": 89900,
+      "rating": 4.9,
+      "reviewsCount": 92,
+      "stock": 20,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+      ],
+      "badge": "Extreme Outdoor",
+      "description": "The ultimate sports and adventure watch. 49mm corrosion-resistant titanium case, 3000-nit Always-On display, precision dual-frequency GPS, and up to 72 hours in Low Power Mode.",
+      "specs": {
+        "Case": "49mm Grade 5 Titanium",
+        "Display": "3000 nits Sapphire Crystal Glass",
+        "Water Resistance": "100m Water Resistant (EN13319 Dive Certified)",
+        "Sensors": "Depth Gauge, Water Temp, ECG, SpO2, Heart Rate"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_wat_2",
+      "title": "Samsung Galaxy Watch 6 Classic (47mm Rotating Bezel)",
+      "category": "Smart Watches",
+      "price": 29999,
+      "originalPrice": 36999,
+      "rating": 4.7,
+      "reviewsCount": 85,
+      "stock": 28,
+      "image": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&q=80"
+      ],
+      "badge": "Classic Style",
+      "description": "Iconic rotating physical bezel with 20% larger Super AMOLED sapphire crystal screen, comprehensive body composition BIA sensor, sleep coaching, and ECG.",
+      "specs": {
+        "Display": "1.5-inch Super AMOLED Sapphire Crystal (480x480)",
+        "Material": "Stainless Steel Case with Hybrid Leather Band",
+        "Sensors": "BioActive (ECG, Blood Pressure, BIA, Optical Heart Rate)",
+        "Durability": "5 ATM + IP68 / MIL-STD-810H"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_tv_1",
+      "title": "LG 65\" 4K OLED evo Smart TV (Dolby Vision, 120Hz G-Sync)",
+      "category": "Televisions",
+      "price": 139990,
+      "originalPrice": 189990,
+      "rating": 4.9,
+      "reviewsCount": 78,
+      "stock": 10,
+      "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=800&q=80"
+      ],
+      "badge": "Cinema Grade",
+      "description": "Self-lit OLED pixels delivering infinite contrast and 100% color fidelity. Powered by α9 AI Processor 4K Gen6, Dolby Vision, Dolby Atmos, and 0.1ms gaming response time.",
+      "specs": {
+        "Panel": "65-inch 4K Self-Lighting OLED evo",
+        "Processor": "α9 AI Processor 4K Gen6",
+        "Gaming": "120Hz, VRR, NVIDIA G-Sync, AMD FreeSync Premium",
+        "Audio": "40W 2.2 Channel Dolby Atmos"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_tv_2",
+      "title": "Sony Bravia XR 55\" Full Array 4K Google TV",
+      "category": "Televisions",
+      "price": 79990,
+      "originalPrice": 104900,
+      "rating": 4.8,
+      "reviewsCount": 65,
+      "stock": 14,
+      "image": "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80"
+      ],
+      "badge": "Cognitive XR",
+      "description": "Cognitive Processor XR understands how humans see and hear to deliver deep blacks, intense brightness, and Acoustic Multi-Audio sound positioning.",
+      "specs": {
+        "Display": "55-inch 4K Full Array LED (3840x2160)",
+        "Processor": "Cognitive Processor XR",
+        "Smart OS": "Google TV with Hands-free Voice Search",
+        "HDR": "Dolby Vision, HDR10, HLG"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_clo_1",
+      "title": "Zara Premium Italian Wool Blend Trench Coat",
+      "category": "Clothing",
+      "price": 7990,
+      "originalPrice": 11990,
+      "rating": 4.8,
+      "reviewsCount": 95,
+      "stock": 35,
+      "image": "https://images.unsplash.com/photo-1539533018447-63fcce667883?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1539533018447-63fcce667883?w=800&q=80"
+      ],
+      "badge": "Winter Luxury",
+      "description": "Tailored double-breasted longline trench coat crafted with premium Italian wool blend fabric, notched lapels, horn buttons, and matching tie belt.",
+      "specs": {
+        "Material": "70% Virgin Wool, 30% Cashmere Blend",
+        "Lining": "100% Viscose Satin",
+        "Fit": "Tailored Regular Fit",
+        "Care": "Professional Dry Clean Only"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_clo_2",
+      "title": "Levi's 511 Slim Fit Stretch Denim Jeans",
+      "category": "Clothing",
+      "price": 2999,
+      "originalPrice": 4599,
+      "rating": 4.7,
+      "reviewsCount": 160,
+      "stock": 50,
+      "image": "https://images.unsplash.com/photo-1542272604-780c96856592?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1542272604-780c96856592?w=800&q=80"
+      ],
+      "badge": "Everyday Staple",
+      "description": "A modern slim with room to move. Added stretch for all-day comfort with classic 5-pocket styling and signature red tab.",
+      "specs": {
+        "Fabric": "99% Cotton, 1% Elastane",
+        "Rise": "Mid Rise (10.25\")",
+        "Leg Opening": "Slim 14.5\"",
+        "Wash": "Dark Indigo Vintage Wash"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_sho_1",
+      "title": "Nike Air Jordan 1 Retro High OG Chicago Sneakers",
+      "category": "Shoes",
+      "price": 14995,
+      "originalPrice": 18995,
+      "rating": 4.9,
+      "reviewsCount": 210,
+      "stock": 21,
+      "image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80"
+      ],
+      "badge": "Sneakerhead Grail",
+      "description": "The timeless icon. Full-grain leather upper in legendary Varsity Red, White, and Black colorway with encapsulated Air-Sole cushioning and solid rubber outsole.",
+      "specs": {
+        "Upper": "100% Genuine Full-Grain Leather",
+        "Cushioning": "Encapsulated Nike Air-Sole",
+        "Outsole": "Durable Solid Rubber Pivot Circle",
+        "Collection": "Jordan Retro OG"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_sho_2",
+      "title": "Adidas Ultraboost Light Running Shoes",
+      "category": "Shoes",
+      "price": 9999,
+      "originalPrice": 15999,
+      "rating": 4.8,
+      "reviewsCount": 135,
+      "stock": 40,
+      "image": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&q=80"
+      ],
+      "badge": "30% Lighter Boost",
+      "description": "Experience epic energy return with Light BOOST cushioning, Primeknit+ textile upper for snug support, and Continental Better Rubber outsole grip.",
+      "specs": {
+        "Midsole": "Light BOOST Technology",
+        "Upper": "adidas PRIMEKNIT+ (50% Parley Ocean Plastic)",
+        "Drop": "10mm (Heel: 22mm / Forefoot: 12mm)",
+        "Weight": "299g (Size 8.5)"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_bag_1",
+      "title": "Samsonite Pro-DLX 6 Expandable Business Cabin Trolley",
+      "category": "Bags",
+      "price": 18500,
+      "originalPrice": 24000,
+      "rating": 4.9,
+      "reviewsCount": 78,
+      "stock": 16,
+      "image": "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=800&q=80"
+      ],
+      "badge": "Executive Travel",
+      "description": "Ballistic nylon cabin luggage with powerbank pocket, integrated USB port, RFID blocking pocket, TSA padlock, and smooth shock-absorbing double spinner wheels.",
+      "specs": {
+        "Dimensions": "55 x 40 x 20/23 cm (Cabin Size)",
+        "Material": "Armoured Ballistic Nylon with Leather Accents",
+        "Volume": "40/46 Litres",
+        "Warranty": "5-Year Global Limited Warranty"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_bag_2",
+      "title": "Mokobara The Transit Water-Resistant Laptop Backpack",
+      "category": "Bags",
+      "price": 4999,
+      "originalPrice": 7999,
+      "rating": 4.8,
+      "reviewsCount": 112,
+      "stock": 38,
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
+      ],
+      "badge": "Urban Commute",
+      "description": "Engineered for creators. Dedicated suspended 16\" laptop sleeve, concealed passport pocket, magnetic luggage pass-through strap, and water-resistant vegan leather base.",
+      "specs": {
+        "Capacity": "21 Litres",
+        "Material": "Water-Repellent Poly-Nylon & Vegan Leather",
+        "Laptop Fit": "Up to 16\" MacBook Pro",
+        "Zippers": "Self-Repairing YKK Zippers"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_bok_1",
+      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits",
+      "category": "Books",
+      "price": 499,
+      "originalPrice": 799,
+      "rating": 4.9,
+      "reviewsCount": 420,
+      "stock": 100,
+      "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80"
+      ],
+      "badge": "#1 Bestseller",
+      "description": "The #1 New York Times bestseller by James Clear. A revolutionary system to get 1% better every day, break bad habits, and master tiny behaviors that lead to remarkable results.",
+      "specs": {
+        "Author": "James Clear",
+        "Publisher": "Random House Business Books",
+        "Language": "English",
+        "Pages": "320 Pages (Paperback Edition)"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_bok_2",
+      "title": "The Psychology of Money - Hardcover Collector's Edition",
+      "category": "Books",
+      "price": 599,
+      "originalPrice": 899,
+      "rating": 4.9,
+      "reviewsCount": 310,
+      "stock": 75,
+      "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80"
+      ],
+      "badge": "Timeless Wisdom",
+      "description": "Timeless lessons on wealth, greed, and happiness by Morgan Housel. 19 short stories exploring the strange ways people think about money and teaching you how to make better sense of it.",
+      "specs": {
+        "Author": "Morgan Housel",
+        "Publisher": "Jaico Publishing House",
+        "Format": "Hardcover Luxury Binding",
+        "Pages": "252 Pages"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_fur_1",
+      "title": "Herman Miller Aeron Ergonomic Mesh Office Chair",
+      "category": "Home & Furniture",
+      "price": 89900,
+      "originalPrice": 109900,
+      "rating": 4.9,
+      "reviewsCount": 64,
+      "stock": 8,
+      "image": "https://images.unsplash.com/photo-1580481077197-2a5482315c26?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1580481077197-2a5482315c26?w=800&q=80"
+      ],
+      "badge": "Gold Standard Ergonomics",
+      "description": "The benchmark for ergonomic seating. 8Z Pellicle breathable suspension mesh, PostureFit SL adjustable lumbar sacral support, and forward tilt mechanism.",
+      "specs": {
+        "Size": "Size B (Medium)",
+        "Material": "Recycled Ocean-Bound Plastic & Die-Cast Aluminum",
+        "Warranty": "12-Year 3-Shift Herman Miller Warranty",
+        "Weight Capacity": "Up to 159 kg"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_fur_2",
+      "title": "Solid Teak Wood 3-Seater Chesterfield Velvet Sofa",
+      "category": "Home & Furniture",
+      "price": 34999,
+      "originalPrice": 49999,
+      "rating": 4.8,
+      "reviewsCount": 42,
+      "stock": 10,
+      "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80"
+      ],
+      "badge": "Royal Living",
+      "description": "Deep-button tufted scroll arms, solid Sheesham/Teak kiln-dried wood frame, high-density pocket spring foam cushions, and ultra-soft jewel-toned velvet fabric.",
+      "specs": {
+        "Frame": "100% Solid Teak Wood",
+        "Upholstery": "High-GSM Royal Emerald Velvet",
+        "Dimensions": "84\" W x 36\" D x 31\" H",
+        "Seating Capacity": "3 Seater"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_kit_1",
+      "title": "Philips Digital Air Fryer with Rapid Air Technology (4.1L)",
+      "category": "Kitchen Appliances",
+      "price": 6499,
+      "originalPrice": 9995,
+      "rating": 4.8,
+      "reviewsCount": 188,
+      "stock": 45,
+      "image": "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=800&q=80"
+      ],
+      "badge": "Healthy Cooking",
+      "description": "Fry, bake, grill, roast, and reheat with up to 90% less fat. Touchscreen with 7 preset cooking menus, Keep Warm function, and NutriU recipe app integration.",
+      "specs": {
+        "Capacity": "4.1 Litres (0.8 kg food capacity)",
+        "Power": "1400 Watts",
+        "Technology": "Rapid Air Starfish Design",
+        "Dishwasher Safe": "Yes, QuickClean basket"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_kit_2",
+      "title": "Morphy Richards Espresso & Cappuccino Coffee Maker (15 Bar)",
+      "category": "Kitchen Appliances",
+      "price": 8999,
+      "originalPrice": 12995,
+      "rating": 4.7,
+      "reviewsCount": 94,
+      "stock": 25,
+      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80"
+      ],
+      "badge": "Barista at Home",
+      "description": "Authentic 15-bar Italian high pressure pump for rich crema espresso, stainless steel milk frother steam wand for lattes & cappuccinos, and cup warming plate.",
+      "specs": {
+        "Pump Pressure": "15 Bar Powerful Italian Pump",
+        "Water Tank": "1.5 Litre Removable Reservoir",
+        "Body": "Brushed Stainless Steel & Die-Cast Aluminum",
+        "Power": "1050 Watts"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_gam_1",
+      "title": "Sony PlayStation 5 (PS5) Slim 1TB Console with DualSense",
+      "category": "Gaming",
+      "price": 49990,
+      "originalPrice": 54990,
+      "rating": 4.9,
+      "reviewsCount": 260,
+      "stock": 18,
+      "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&q=80"
+      ],
+      "badge": "Next-Gen Gaming",
+      "description": "Experience lightning-fast loading with an ultra-high speed 1TB SSD, deeper immersion with haptic feedback, adaptive triggers, 3D Audio, and incredible PS5 games in 4K 120fps.",
+      "specs": {
+        "Storage": "1TB Custom Ultra-High Speed NVMe SSD",
+        "Resolution": "Up to 4K 120Hz & 8K Output / Ray Tracing",
+        "Audio": "Tempest 3D AudioTech",
+        "Included": "DualSense Wireless Controller, HDMI 2.1 Cable"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_gam_2",
+      "title": "Nintendo Switch OLED Model with Neon Red & Blue Joy-Con",
+      "category": "Gaming",
+      "price": 28990,
+      "originalPrice": 34990,
+      "rating": 4.8,
+      "reviewsCount": 140,
+      "stock": 25,
+      "image": "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=800&q=80"
+      ],
+      "badge": "Play Anywhere",
+      "description": "Vibrant 7-inch OLED screen, wide adjustable stand, dock with wired LAN port, 64GB internal storage, and enhanced audio in handheld and tabletop modes.",
+      "specs": {
+        "Screen": "7.0-inch OLED Touchscreen (1280x720)",
+        "Modes": "TV Mode, Tabletop Mode, Handheld Mode",
+        "Battery Life": "4.5 to 9 Hours approx",
+        "Storage": "64GB Internal (MicroSD Expandable)"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_cam_1",
+      "title": "Sony Alpha A7 IV Full-Frame Mirrorless Camera (Body Only)",
+      "category": "Cameras",
+      "price": 179990,
+      "originalPrice": 219990,
+      "rating": 4.9,
+      "reviewsCount": 88,
+      "stock": 8,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80"
+      ],
+      "badge": "Hybrid Masterpiece",
+      "description": "33.0MP full-frame Exmor R back-illuminated CMOS sensor, BIONZ XR processing engine, 4K 60p 10-bit 4:2:2 video recording, and real-time Eye AF for humans, animals, and birds.",
+      "specs": {
+        "Sensor": "33.0 MP Full-Frame Exmor R CMOS",
+        "Video": "4K 60p 10-Bit 4:2:2 S-Cinetone / S-Log3",
+        "Autofocus": "759-Point Phase-Detection Fast Hybrid AF",
+        "Stabilization": "5-Axis Optical In-Body Image Stabilization (5.5 Stops)"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_cam_2",
+      "title": "GoPro HERO 12 Black Waterproof 5.3K Action Camera Bundle",
+      "category": "Cameras",
+      "price": 34990,
+      "originalPrice": 44990,
+      "rating": 4.8,
+      "reviewsCount": 125,
+      "stock": 24,
+      "image": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&q=80"
+      ],
+      "badge": "Adventure Proof",
+      "description": "Best-in-class 5.3K60 HDR video, HyperSmooth 6.0 video stabilization with 360° Horizon Lock, Bluetooth audio support for AirPods, and rugged waterproof to 33ft (10m).",
+      "specs": {
+        "Video": "5.3K60, 4K120, 2.7K240 Slow Motion",
+        "Stabilization": "HyperSmooth 6.0 with AutoBoost",
+        "Waterproofing": "10m (33ft) without housing",
+        "Battery": "1720mAh Enduro Cold-Weather Battery"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_acc_1",
+      "title": "Anker 737 GaNPrime 140W Power Bank (24,000mAh Smart Display)",
+      "category": "Electronic Accessories",
+      "price": 11999,
+      "originalPrice": 15999,
+      "rating": 4.9,
+      "reviewsCount": 154,
+      "stock": 35,
+      "image": "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1615526675159-e248c3021d3f?w=800&q=80"
+      ],
+      "badge": "Ultra High Power",
+      "description": "Ultra-powerful two-way fast charging with Power Delivery 3.1 and bi-directional 140W charging to juice up a 16\" MacBook Pro in just 40 minutes, with real-time smart digital display.",
+      "specs": {
+        "Capacity": "24,000 mAh High-Density Cells",
+        "Max Output": "140W Max Output (Dual USB-C + USB-A)",
+        "Display": "Smart Digital Color Screen (Watts, Temp, Time Remaining)",
+        "Technology": "GaNPrime Intelligent Power Distribution"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_acc_2",
+      "title": "SanDisk Extreme 1TB Portable External NVMe SSD (1050MB/s)",
+      "category": "Electronic Accessories",
+      "price": 8999,
+      "originalPrice": 14500,
+      "rating": 4.8,
+      "reviewsCount": 190,
+      "stock": 50,
+      "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=800&q=80"
+      ],
+      "badge": "Rugged Fast SSD",
+      "description": "Fast NVMe solid state performance with 1050MB/s read and 1000MB/s write speeds, 2-meter drop protection, IP55 water and dust resistance, and handy carabiner loop.",
+      "specs": {
+        "Capacity": "1TB NVMe Solid State Drive",
+        "Speed": "Up to 1050 MB/s Read, 1000 MB/s Write",
+        "Interface": "USB 3.2 Gen 2 (Type-C to C and A included)",
+        "Durability": "IP55 Water & Dust Resistant, 2M Drop Protection"
+      },
+      "reviews": [],
+      "featured": false
+    },
+    {
+      "id": "prod_bt_1",
+      "title": "Dyson Supersonic Hair Dryer with Intelligent Heat Control",
+      "category": "Beauty & Personal Care",
+      "price": 34900,
+      "originalPrice": 39900,
+      "rating": 4.9,
+      "reviewsCount": 175,
+      "stock": 20,
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+      ],
+      "badge": "Luxury Hair Care",
+      "description": "Fast drying with no extreme heat. Engineered for different hair types, with 5 styling attachments including the Flyaway attachment for smooth, shiny salon finish.",
+      "specs": {
+        "Motor": "Dyson Digital Motor V9 (110,000 RPM)",
+        "Heat Control": "Measures Air Temp 40x per second",
+        "Power": "1600 Watts with Air Multiplier Technology",
+        "Attachments": "Flyaway, Styling Concentrator, Diffuser, Gentle Air"
+      },
+      "reviews": [],
+      "featured": true
+    },
+    {
+      "id": "prod_bt_2",
+      "title": "Forest Essentials Soundarya Radiance Luxury Facial Care Gift Box",
+      "category": "Beauty & Personal Care",
+      "price": 4850,
+      "originalPrice": 5800,
+      "rating": 4.8,
+      "reviewsCount": 98,
+      "stock": 30,
+      "image": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80"
+      ],
+      "badge": "Ayurvedic Luxury",
+      "description": "Infused with 24K pure gold bhasma and high-performing Ayurvedic herbs. Includes Soundarya Radiance Cream with SPF 25, Facial Ubtan, Serum, and Silk Soap.",
+      "specs": {
+        "Key Ingredients": "24K Gold Bhasma, Saffron, Ashwagandha, Raw Honey",
+        "Skin Type": "Suitable for all skin types",
+        "Standard": "100% Natural & Cruelty-Free Ayurvedic Formulation"
+      },
+      "reviews": [],
+      "featured": false
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-2026-6931",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "coinsRedeemed": 0,
+      "coinsDiscount": 0,
+      "coinsEarned": 11871,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-31T09:51:51.695Z",
+          "note": "Order received with Cash on Delivery. Earned 11871 Aura Coins!"
+        }
+      ],
+      "createdAt": "2026-08-31T09:51:51.695Z"
+    },
+    {
+      "id": "ORD-2026-8819",
+      "userId": "usr_1788167359898_4k8p",
+      "customerName": "kumar",
+      "customerEmail": "kumaraswamy@gmail.com",
+      "customerPhone": "9550203943",
+      "shippingAddress": "518124",
+      "items": [
+        {
+          "productId": "prod_lap_1",
+          "title": "Apple MacBook Pro 16\" M3 Max (36GB RAM, 1TB SSD)",
+          "price": 189900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80"
+        }
+      ],
+      "subtotal": 189900,
+      "discount": 0,
+      "coinsRedeemed": 0,
+      "coinsDiscount": 0,
+      "coinsEarned": 20509,
+      "tax": 15192,
+      "shipping": 0,
+      "total": 205092,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-31T09:10:00.405Z",
+          "note": "Order received with Cash on Delivery. Earned 20509 Aura Coins!"
+        }
+      ],
+      "createdAt": "2026-08-31T09:10:00.405Z"
+    },
+    {
+      "id": "ORD-2026-9267",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "coinsRedeemed": 0,
+      "coinsDiscount": 0,
+      "coinsEarned": 11871,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-31T08:58:35.704Z",
+          "note": "Order received with Cash on Delivery. Earned 11871 Aura Coins!"
+        }
+      ],
+      "createdAt": "2026-08-31T08:58:35.704Z"
+    },
+    {
+      "id": "ORD-2026-2090",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 0,
+      "coinsRedeemed": 200,
+      "coinsDiscount": 20,
+      "coinsEarned": 14567,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 145672,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-31T08:58:28.910Z",
+          "note": "Order received with Cash on Delivery. Earned 14567 Aura Coins!"
+        }
+      ],
+      "createdAt": "2026-08-31T08:58:28.910Z"
+    },
+    {
+      "id": "ORD-2026-3095",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-31T04:20:00.473Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-31T04:20:00.473Z"
+    },
+    {
+      "id": "ORD-2026-7646",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T17:53:06.754Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T17:53:06.754Z"
+    },
+    {
+      "id": "ORD-2026-3350",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T17:50:08.583Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T17:50:08.583Z"
+    },
+    {
+      "id": "ORD-2026-3243",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T17:45:12.920Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T17:45:12.920Z"
+    },
+    {
+      "id": "ORD-2026-1424",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T17:45:08.944Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T17:45:08.944Z"
+    },
+    {
+      "id": "ORD-2026-2999",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T17:43:37.222Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T17:43:37.222Z"
+    },
+    {
+      "id": "ORD-2026-8658",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T16:17:18.680Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T16:17:18.680Z"
+    },
+    {
+      "id": "ORD-2026-2119",
+      "userId": "usr_1788012654589_gtoq",
+      "customerName": "kumar",
+      "customerEmail": "kumaraswamyk259@gmail.com",
+      "customerPhone": "9550203943",
+      "shippingAddress": "venkatapuram  Banganapalli  Nandyal",
+      "items": [
+        {
+          "productId": "prod_sho_1",
+          "title": "Nike Air Jordan 1 Retro High OG Chicago Sneakers",
+          "price": 14995,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80"
+        },
+        {
+          "productId": "prod_mob_2",
+          "title": "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB/256GB)",
+          "price": 119999,
+          "quantity": 5,
+          "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80"
+        },
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 749890,
+      "discount": 0,
+      "tax": 59991.2,
+      "shipping": 0,
+      "total": 809881.2,
+      "paymentMethod": "Credit / Debit Card",
+      "paymentStatus": "Paid Online",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T14:15:28.593Z",
+          "note": "Order received with Credit / Debit Card."
+        }
+      ],
+      "createdAt": "2026-08-29T14:15:28.593Z"
+    },
+    {
+      "id": "ORD-2026-3989",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_mob_1",
+          "title": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+          "price": 134900,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+        }
+      ],
+      "subtotal": 134900,
+      "discount": 26980,
+      "tax": 10792,
+      "shipping": 0,
+      "total": 118712,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Pending",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-08-29T13:55:28.919Z",
+          "note": "Order received with Cash on Delivery."
+        }
+      ],
+      "createdAt": "2026-08-29T13:55:28.919Z"
+    },
+    {
+      "id": "ORD-2026-9081",
+      "userId": "usr_alex",
+      "customerName": "Alex Morgan",
+      "customerEmail": "user@ecommerce.com",
+      "customerPhone": "+91 98490 12345",
+      "shippingAddress": "Plot 42, Jubilee Hills, Hyderabad, Telangana 500033",
+      "items": [
+        {
+          "productId": "prod_aud_1",
+          "title": "Sony WH-1000XM5 Wireless Industry-Leading ANC Headphones",
+          "price": 26990,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80"
+        }
+      ],
+      "subtotal": 26990,
+      "discount": 5398,
+      "tax": 2159.2,
+      "shipping": 0,
+      "total": 23751.2,
+      "paymentMethod": "Cash on Delivery",
+      "paymentStatus": "Pending on Delivery",
+      "orderStatus": "Delivered",
+      "trackingHistory": [
+        {
+          "status": "Order Placed",
+          "timestamp": "2026-02-18T09:30:00.000Z",
+          "note": "Order confirmed with Cash on Delivery"
+        },
+        {
+          "status": "Processing",
+          "timestamp": "2026-02-18T14:00:00.000Z",
+          "note": "Packed and quality checked in central warehouse"
+        },
+        {
+          "status": "Shipped",
+          "timestamp": "2026-02-19T10:15:00.000Z",
+          "note": "Handed over to BlueDart Express (Tracking: BDX-99827)"
+        },
+        {
+          "status": "Out for Delivery",
+          "timestamp": "2026-02-21T08:00:00.000Z",
+          "note": "Courier out for delivery in Jubilee Hills"
+        },
+        {
+          "status": "Delivered",
+          "timestamp": "2026-02-21T15:45:00.000Z",
+          "note": "Delivered and Cash Collected: ₹23,751.20"
+        }
+      ],
+      "createdAt": "2026-02-18T09:30:00.000Z"
+    }
+  ],
+  "coupons": [
+    {
+      "code": "WELCOME10",
+      "discountPercent": 10,
+      "description": "10% off on your order"
+    },
+    {
+      "code": "SAVE20",
+      "discountPercent": 20,
+      "description": "20% special festival discount"
+    }
+  ],
+  "giftCards": [
+    {
+      "code": "AURA1000",
+      "amount": 1000,
+      "isRedeemed": false,
+      "description": "AURA Gold Privilege Voucher ₹1,000"
+    },
+    {
+      "code": "GIFT500",
+      "amount": 500,
+      "isRedeemed": false,
+      "description": "Festive Gift Card ₹500"
+    },
+    {
+      "code": "FESTIVE2000",
+      "amount": 2000,
+      "isRedeemed": true,
+      "description": "VIP Mega Voucher ₹2,000",
+      "redeemedBy": "usr_alex",
+      "redeemedAt": "2026-08-31T08:58:28.840Z"
+    },
+    {
+      "code": "WELCOME250",
+      "amount": 250,
+      "isRedeemed": false,
+      "description": "New Shopper Welcome Bonus ₹250"
+    }
+  ],
+  "priceDropAlerts": [
+    {
+      "id": "alert_1788166708879",
+      "productId": "prod_mob_1",
+      "productTitle": "Apple iPhone 15 Pro Max (Titanium Blue, 256GB)",
+      "currentPrice": 134900,
+      "targetPrice": 125000,
+      "email": "user@ecommerce.com",
+      "phone": "+91 98490 12345",
+      "createdAt": "2026-08-31T08:58:28.879Z"
+    }
+  ]
+}

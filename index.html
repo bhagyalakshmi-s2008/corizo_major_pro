@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA &bull; Next-Gen E-Commerce Platform</title>
+  <meta name="description" content="A premium full-stack e-commerce experience featuring modern electronics, fashion, mobiles, laptops, gaming, and lifestyle essentials with instant Cash on Delivery, Wishlist, customer reviews, and live tracking.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="theme-dark">
+
+  <!-- Top Flash Sale Announcement Bar -->
+  <div class="top-flash-sale-bar">
+    <div class="container flash-ticker-wrap">
+      <span>⚡ <strong>MEGA FLASH SALE LIVE</strong>: Flat 20% OFF Everything Above ₹999! Code: <strong>SAVE20</strong></span>
+      <span class="flash-timer-badge"><i class="fa-regular fa-clock"></i> <span id="flashSaleCountdownTimer">04h 59m 59s</span></span>
+      <a href="#home" onclick="filterByCategory('All'); openLuckyWheelModal();" style="color: #fef08a; text-decoration: underline; cursor: pointer; font-size: 0.8rem;">Spin Lucky Wheel for Extra Rewards!</a>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas for Order Placement & Wheel Win -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Notification Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Main Navigation Bar -->
+  <header id="mainHeader" class="main-header glass-nav">
+    <div class="header-inner container">
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo" onclick="navigateTo('home')">
+        <div class="logo-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">AURA</span>
+          <span class="brand-tag">STORE</span>
+        </div>
+      </a>
+
+      <!-- Search Bar with Live Autocomplete, Voice Search & AI Camera Visual Search -->
+      <div class="nav-search-bar" id="navSearchBarContainer">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="globalSearchInput" placeholder="Search 15+ categories, gear, brands..." autocomplete="off">
+        <button id="voiceSearchBtn" class="voice-search-btn" onclick="startVoiceSearch()" title="Search with Voice">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button id="visualSearchBtn" class="visual-search-btn" onclick="openVisualSearchModal()" title="AI Visual Search (Search by Photo)">
+          <i class="fa-solid fa-camera"></i>
+        </button>
+        <button id="clearSearchBtn" class="clear-search-btn" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Nav Actions -->
+      <nav class="nav-actions">
+        <!-- Global Currency Switcher Dropdown -->
+        <div class="currency-dropdown-wrap" id="currencyDropdownWrap">
+          <button class="currency-selector-btn" id="currencySelectorBtn" onclick="toggleCurrencyDropdown(event)" title="Change Currency">
+            <span id="currentCurrencyFlag">🇮🇳</span>
+            <span id="currentCurrencyCode">INR (₹)</span>
+            <i class="fa-solid fa-chevron-down currency-chevron"></i>
+          </button>
+          <div class="currency-menu" id="currencyMenuDropdown">
+            <div class="currency-opt active" onclick="setAppCurrency('INR')"><span>🇮🇳</span> INR (₹)</div>
+            <div class="currency-opt" onclick="setAppCurrency('USD')"><span>🇺🇸</span> USD ($)</div>
+            <div class="currency-opt" onclick="setAppCurrency('EUR')"><span>🇪🇺</span> EUR (€)</div>
+            <div class="currency-opt" onclick="setAppCurrency('GBP')"><span>🇬🇧</span> GBP (£)</div>
+            <div class="currency-opt" onclick="setAppCurrency('AED')"><span>🇦🇪</span> AED (AED)</div>
+            <div class="currency-opt" onclick="setAppCurrency('CAD')"><span>🇨🇦</span> CAD ($)</div>
+            <div class="currency-opt" onclick="setAppCurrency('AUD')"><span>🇦🇺</span> AUD ($)</div>
+          </div>
+        </div>
+
+        <!-- Web Audio SFX Toggle -->
+        <button class="sfx-toggle-btn" id="sfxToggleBtn" onclick="toggleSfxSound()" title="Sound Effects (Mute/Unmute)">
+          <i class="fa-solid fa-volume-high text-accent" id="sfxToggleIcon"></i>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Theme">
+          <i class="fa-solid fa-sun text-warning" id="themeToggleIcon"></i>
+        </button>
+
+        <!-- Aura VIP Club / Coins Pill -->
+        <button class="nav-vip-btn" id="navVipBtn" onclick="openVipClubModal()" title="Aura VIP Rewards & Coins">
+          <i class="fa-solid fa-crown text-warning"></i>
+          <span class="vip-coins-pill" id="navVipCoinsPill">👑 VIP Club</span>
+        </button>
+
+        <!-- Aura Digital Wallet Button -->
+        <button class="nav-wallet-btn" id="navWalletBtn" onclick="openAuraWalletModal()" title="Aura Digital Wallet">
+          <i class="fa-solid fa-wallet text-accent"></i>
+          <span class="wallet-balance-pill" id="navWalletBalancePill">Wallet</span>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button class="wishlist-trigger-btn" id="wishlistTriggerBtn" onclick="toggleWishlistDrawer()" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="wishlist-badge" id="wishlistCountBadge" style="display: none;">0</span>
+        </button>
+
+        <!-- User Links -->
+        <div id="guestNavGroup" class="nav-group">
+          <button class="btn btn-outline-nav" onclick="navigateTo('login')">
+            <i class="fa-regular fa-user"></i> Login
+          </button>
+          <button class="btn btn-primary-nav" onclick="navigateTo('register')">
+            Register
+          </button>
+        </div>
+
+        <div id="userNavGroup" class="nav-group" style="display: none;">
+          <!-- Track Orders Nav Button -->
+          <button class="nav-icon-btn" onclick="navigateTo('my-orders')" title="My Orders">
+            <i class="fa-solid fa-box-open"></i>
+            <span class="nav-btn-label">My Orders</span>
+          </button>
+
+          <!-- User Menu Dropdown -->
+          <div class="user-menu-dropdown">
+            <button class="user-avatar-btn" id="userMenuBtn">
+              <span class="user-avatar" id="navUserAvatar">U</span>
+              <span class="user-name-text" id="navUserName">Alex</span>
+              <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+            </button>
+            <div class="dropdown-menu" id="userDropdownMenu">
+              <div class="dropdown-header">
+                <p class="dropdown-user-name" id="dropdownUserName">Alex Morgan</p>
+                <p class="dropdown-user-email" id="dropdownUserEmail">user@ecommerce.com</p>
+                <span class="badge badge-role" id="dropdownUserRole">Customer</span>
+              </div>
+              <div class="dropdown-divider"></div>
+              <a href="javascript:void(0)" class="dropdown-item" onclick="openAuraWalletModal()">
+                <i class="fa-solid fa-wallet text-accent"></i> Aura Wallet & Gift Cards
+              </a>
+              <a href="javascript:void(0)" class="dropdown-item" onclick="openVipClubModal()">
+                <i class="fa-solid fa-crown text-warning"></i> VIP Rewards & Coins Passbook
+              </a>
+              <a href="#my-orders" class="dropdown-item" onclick="navigateTo('my-orders')">
+                <i class="fa-solid fa-receipt"></i> View My Orders
+              </a>
+              <div id="adminPortalLink" style="display: none;">
+                <a href="#admin" class="dropdown-item admin-link-highlight" onclick="navigateTo('admin')">
+                  <i class="fa-solid fa-chart-line"></i> Admin Dashboard
+                </a>
+              </div>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item text-danger" onclick="logoutUser()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Quick Bar (When logged in as Admin) -->
+        <div id="adminNavGroup" class="nav-group" style="display: none;">
+          <button class="btn btn-admin-nav" onclick="navigateTo('admin')">
+            <i class="fa-solid fa-shield-halved"></i> Admin Portal
+          </button>
+        </div>
+
+        <!-- Cart Button -->
+        <button class="cart-trigger-btn" id="cartTriggerBtn" onclick="toggleCartDrawer()">
+          <div class="cart-icon-wrap">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge" id="cartCountBadge">0</span>
+          </div>
+          <span class="cart-price-preview" id="cartTotalPreview">₹0.00</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Category Sub-Navigation Bar (All 15 Categories) -->
+    <div class="category-subnav" id="categorySubnav">
+      <div class="container category-subnav-inner">
+        <button class="category-pill active" data-cat="All" onclick="filterByCategory('All')">
+          <i class="fa-solid fa-layer-group"></i> All
+        </button>
+        <button class="category-pill" data-cat="Mobiles" onclick="filterByCategory('Mobiles')">
+          <i class="fa-solid fa-mobile-screen"></i> Mobiles
+        </button>
+        <button class="category-pill" data-cat="Laptops" onclick="filterByCategory('Laptops')">
+          <i class="fa-solid fa-laptop"></i> Laptops
+        </button>
+        <button class="category-pill" data-cat="Headphones & Earphones" onclick="filterByCategory('Headphones & Earphones')">
+          <i class="fa-solid fa-headphones"></i> Audio
+        </button>
+        <button class="category-pill" data-cat="Smart Watches" onclick="filterByCategory('Smart Watches')">
+          <i class="fa-solid fa-stopwatch"></i> Smart Watches
+        </button>
+        <button class="category-pill" data-cat="Televisions" onclick="filterByCategory('Televisions')">
+          <i class="fa-solid fa-tv"></i> TVs
+        </button>
+        <button class="category-pill" data-cat="Clothing" onclick="filterByCategory('Clothing')">
+          <i class="fa-solid fa-shirt"></i> Clothing
+        </button>
+        <button class="category-pill" data-cat="Shoes" onclick="filterByCategory('Shoes')">
+          <i class="fa-solid fa-shoe-prints"></i> Shoes
+        </button>
+        <button class="category-pill" data-cat="Bags" onclick="filterByCategory('Bags')">
+          <i class="fa-solid fa-bag-shopping"></i> Bags
+        </button>
+        <button class="category-pill" data-cat="Books" onclick="filterByCategory('Books')">
+          <i class="fa-solid fa-book-open"></i> Books
+        </button>
+        <button class="category-pill" data-cat="Home & Furniture" onclick="filterByCategory('Home & Furniture')">
+          <i class="fa-solid fa-couch"></i> Home & Furniture
+        </button>
+        <button class="category-pill" data-cat="Kitchen Appliances" onclick="filterByCategory('Kitchen Appliances')">
+          <i class="fa-solid fa-blender"></i> Kitchen
+        </button>
+        <button class="category-pill" data-cat="Gaming" onclick="filterByCategory('Gaming')">
+          <i class="fa-solid fa-gamepad"></i> Gaming
+        </button>
+        <button class="category-pill" data-cat="Cameras" onclick="filterByCategory('Cameras')">
+          <i class="fa-solid fa-camera"></i> Cameras
+        </button>
+        <button class="category-pill" data-cat="Electronic Accessories" onclick="filterByCategory('Electronic Accessories')">
+          <i class="fa-solid fa-plug"></i> Accessories
+        </button>
+        <button class="category-pill" data-cat="Beauty & Personal Care" onclick="filterByCategory('Beauty & Personal Care')">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Beauty
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <span class="drawer-title">Navigation</span>
+      <button class="close-btn" onclick="toggleMobileMenu()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="mobile-drawer-body">
+      <div id="mobileGuestMenu">
+        <button class="btn btn-block btn-outline mb-2" onclick="navigateTo('login'); toggleMobileMenu();">Login</button>
+        <button class="btn btn-block btn-primary mb-3" onclick="navigateTo('register'); toggleMobileMenu();">Create Account</button>
+      </div>
+      <div id="mobileUserMenu" style="display: none;">
+        <div class="mobile-user-card mb-3">
+          <span class="user-avatar" id="mobileUserAvatar">U</span>
+          <div>
+            <strong id="mobileUserName">User</strong>
+            <p class="text-muted small" id="mobileUserEmail">user@email.com</p>
+          </div>
+        </div>
+        <button class="btn btn-block btn-outline mb-2" onclick="navigateTo('my-orders'); toggleMobileMenu();">
+          <i class="fa-solid fa-box-open"></i> My Orders
+        </button>
+        <div id="mobileAdminLink" style="display: none;">
+          <button class="btn btn-block btn-admin mb-2" onclick="navigateTo('admin'); toggleMobileMenu();">
+            <i class="fa-solid fa-chart-line"></i> Admin Dashboard
+          </button>
+        </div>
+        <button class="btn btn-block btn-danger-outline mb-3" onclick="logoutUser(); toggleMobileMenu();">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        </button>
+      </div>
+      <hr class="drawer-divider">
+      <div class="mobile-categories">
+        <p class="category-title">Explore 15 Categories</p>
+        <button class="mobile-cat-link" onclick="filterByCategory('All'); toggleMobileMenu();">🌟 All Products</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Mobiles'); toggleMobileMenu();">📱 Mobiles</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Laptops'); toggleMobileMenu();">💻 Laptops</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Headphones & Earphones'); toggleMobileMenu();">🎧 Headphones & Earphones</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Smart Watches'); toggleMobileMenu();">⌚ Smart Watches</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Televisions'); toggleMobileMenu();">📺 Televisions</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Clothing'); toggleMobileMenu();">👕 Clothing</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Shoes'); toggleMobileMenu();">👟 Shoes</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Bags'); toggleMobileMenu();">🎒 Bags</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Books'); toggleMobileMenu();">📚 Books</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Home & Furniture'); toggleMobileMenu();">🏠 Home & Furniture</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Kitchen Appliances'); toggleMobileMenu();">🍳 Kitchen Appliances</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Gaming'); toggleMobileMenu();">🎮 Gaming</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Cameras'); toggleMobileMenu();">📷 Cameras</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Electronic Accessories'); toggleMobileMenu();">🔌 Electronic Accessories</button>
+        <button class="mobile-cat-link" onclick="filterByCategory('Beauty & Personal Care'); toggleMobileMenu();">🧴 Beauty & Personal Care</button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Wishlist Slide-Over Drawer -->
+  <div class="cart-drawer" id="wishlistDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-header-title">
+        <i class="fa-solid fa-heart text-danger"></i>
+        <span>My Wishlist</span>
+        <span class="cart-items-count-pill" id="wishlistHeaderCount">0 items</span>
+      </div>
+      <button class="close-drawer-btn" onclick="toggleWishlistDrawer()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="wishlistItemsList">
+      <!-- Populated via wishlist.js -->
+    </div>
+  </div>
+  <div class="cart-drawer-overlay" id="wishlistDrawerOverlay" onclick="toggleWishlistDrawer()"></div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-header-title">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Your Shopping Cart</span>
+        <span class="cart-items-count-pill" id="cartHeaderCount">0 items</span>
+      </div>
+      <button class="close-drawer-btn" onclick="toggleCartDrawer()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="free-shipping-tracker">
+      <div class="shipping-info-text" id="shippingProgressText">
+        Add <strong>₹999.00</strong> more for Free Delivery!
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="shippingProgressBar" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div class="cart-drawer-body" id="cartItemsList">
+      <!-- Populated via cart.js -->
+    </div>
+
+    <!-- Cart Drawer Footer -->
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <!-- Coupon Section -->
+      <div class="cart-coupon-box">
+        <div class="coupon-input-wrap">
+          <i class="fa-solid fa-tag"></i>
+          <input type="text" id="drawerCouponInput" placeholder="Promo code (e.g. WELCOME10, SAVE20)" uppercase>
+          <button class="btn btn-coupon" onclick="applyCouponCode()">Apply</button>
+        </div>
+        <div id="appliedCouponBadge" class="applied-coupon-pill" style="display: none;">
+          <span><i class="fa-solid fa-check"></i> <strong id="appliedCouponCode">SAVE20</strong> applied</span>
+          <button onclick="removeCouponCode()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <!-- Totals Breakdown -->
+      <div class="cart-summary-totals">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotalText">₹0.00</span>
+        </div>
+        <div class="summary-row text-success" id="cartDiscountRow" style="display: none;">
+          <span>Discount Applied</span>
+          <span id="cartDiscountText">-₹0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated GST (8%)</span>
+          <span id="cartTaxText">₹0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery</span>
+          <span id="cartShippingText">₹99.00</span>
+        </div>
+        <div class="summary-row grand-total">
+          <span>Total</span>
+          <span id="cartGrandTotalText">₹0.00</span>
+        </div>
+      </div>
+
+      <!-- Checkout Actions -->
+      <div class="cart-actions-stack">
+        <button class="btn btn-primary btn-block btn-checkout" onclick="proceedToCheckout()">
+          <span>Proceed to Checkout</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="btn btn-secondary btn-block" onclick="toggleCartDrawer()">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="toggleCartDrawer()"></div>
+
+  <!-- MAIN APP CONTAINER / VIEW ROUTER -->
+  <main id="appContainer" class="main-content">
+    
+    <!-- ============================================== -->
+    <!-- VIEW 1: DASHBOARD / PRODUCTS STORE VIEW        -->
+    <!-- ============================================== -->
+    <section id="view-home" class="app-view active">
+      <!-- Hero Banner Carousel -->
+      <div class="hero-banner-section">
+        <div class="container hero-banner-card">
+          <div class="hero-banner-glow"></div>
+          <div class="hero-content">
+            <span class="hero-chip"><i class="fa-solid fa-sparkles"></i> 2026 Collection Live</span>
+            <h1 class="hero-title">Experience Next-Level <span class="gradient-text">Innovation</span> & Lifestyle</h1>
+            <p class="hero-subtitle">Explore 15 categories from flagship Mobiles & Laptops to Audio, Fashion, Kitchen, and Luxury Goods. Fast Cash on Delivery across India.</p>
+            <div class="hero-features-row">
+              <div class="hero-feature-pill">
+                <i class="fa-solid fa-truck-fast"></i> Express Delivery
+              </div>
+              <div class="hero-feature-pill">
+                <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
+              </div>
+              <div class="hero-feature-pill">
+                <i class="fa-solid fa-shield-check"></i> 100% Genuine
+              </div>
+            </div>
+          </div>
+          <div class="hero-graphic">
+            <div class="floating-promo-card">
+              <div class="promo-badge">20% OFF</div>
+              <p class="promo-title">Use Code: <strong>SAVE20</strong></p>
+              <p class="promo-desc">On orders above ₹999 today</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80" alt="Hero Premium Audio" class="hero-product-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Catalog Container -->
+      <div class="container store-catalog-container">
+        <div class="catalog-header-bar">
+          <div class="catalog-title-group">
+            <h2 class="section-title" id="catalogSectionTitle">Featured Products</h2>
+            <p class="section-subtitle" id="catalogProductCount">Showing all items</p>
+          </div>
+          <div class="catalog-controls">
+            <div class="sort-dropdown-wrap">
+              <label for="productSortSelect"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort By:</label>
+              <select id="productSortSelect" class="form-select" onchange="handleSortChange(this.value)">
+                <option value="featured">Featured Picks</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="newest">New Arrivals</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Filter Toolbar: Price Range & In-Stock -->
+        <div class="catalog-filters-bar">
+          <div class="filter-item-group">
+            <label for="priceRangeSlider"><i class="fa-solid fa-sliders"></i> Max Price:</label>
+            <div class="price-slider-wrap">
+              <input type="range" id="priceRangeSlider" min="500" max="200000" step="2500" value="200000" oninput="handlePriceSliderChange(this.value)">
+              <span class="price-slider-val" id="priceRangeLabel">₹2,00,000</span>
+            </div>
+          </div>
+
+          <div class="filter-item-group">
+            <div class="form-check">
+              <input type="checkbox" id="inStockOnlyCheckbox" onchange="handleInStockToggle(this.checked)">
+              <label for="inStockOnlyCheckbox">In Stock Only</label>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn-sm btn-outline" onclick="resetFilters()">
+              <i class="fa-solid fa-rotate-left"></i> Reset Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div class="product-grid" id="productGrid">
+          <!-- Populated by products.js -->
+        </div>
+
+        <!-- Empty / No Results State -->
+        <div class="no-results-state" id="noProductsFoundState" style="display: none;">
+          <i class="fa-solid fa-box-open-full"></i>
+          <h3>No matching products found</h3>
+          <p>Try switching categories or raising the price filter slider.</p>
+          <button class="btn btn-outline" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+
+        <!-- Recently Viewed Products Row on Homepage -->
+        <div class="recently-viewed-section mt-5" id="recentlyViewedSectionContainer" style="display: none;">
+          <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left text-accent"></i> Recently Viewed Items</h2>
+          <div class="product-grid mt-3" id="recentlyViewedGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 2: SPECIFIC PRODUCT DETAILS PAGE          -->
+    <!-- ============================================== -->
+    <section id="view-product-detail" class="app-view">
+      <div class="container product-detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb-nav">
+          <a href="#home" onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a>
+          <span>/</span>
+          <span id="detailBreadcrumbCategory">Category</span>
+          <span>/</span>
+          <span class="current-crumb" id="detailBreadcrumbTitle">Product Title</span>
+        </nav>
+
+        <div class="product-detail-layout">
+          <!-- Left: Image Gallery with interactive switcher -->
+          <div class="detail-gallery-column">
+            <div class="detail-main-image-wrap">
+              <span class="product-card-badge" id="detailBadge">Bestseller</span>
+              <img id="detailMainImage" src="" alt="Product Detail">
+            </div>
+            <div class="detail-thumbnails-row" id="detailThumbnailsRow">
+              <!-- Thumbnails populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Right: Details, Price, Specs & Add to Cart -->
+          <div class="detail-info-column">
+            <div class="detail-category-tag" id="detailCategoryTag">Mobiles</div>
+            <h1 class="detail-product-title" id="detailTitle">Product Title</h1>
+
+            <!-- Rating & Reviews -->
+            <div class="detail-rating-row">
+              <div class="stars-wrap" id="detailRatingStars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <span class="rating-score" id="detailRatingScore">4.9</span>
+              <span class="reviews-count" id="detailReviewsCount">(128 customer reviews)</span>
+            </div>
+
+            <!-- Price Box -->
+            <div class="detail-price-box">
+              <span class="detail-current-price" id="detailCurrentPrice">₹0.00</span>
+              <span class="detail-original-price" id="detailOriginalPrice">₹0.00</span>
+              <span class="detail-discount-badge" id="detailDiscountBadge">20% OFF</span>
+            </div>
+
+            <!-- Description -->
+            <p class="detail-description" id="detailDescription">
+              Detailed description goes here.
+            </p>
+
+            <!-- Stock Status -->
+            <div class="stock-status-box" id="detailStockBox">
+              <div class="stock-indicator in-stock"></div>
+              <span id="detailStockText">In Stock (35 items available)</span>
+            </div>
+
+            <!-- Interactive PIN Code Checker -->
+            <div class="pincode-check-box mb-4">
+              <label><i class="fa-solid fa-truck-fast text-accent"></i> Check Express Delivery Availability:</label>
+              <div class="pincode-input-row">
+                <input type="text" id="detailPincodeInput" placeholder="Enter 6-digit PIN code" maxlength="6">
+                <button class="btn btn-sm btn-primary" onclick="checkDeliveryPincode('detailPincodeInput', 'detailPincodeResult')">Check PIN</button>
+              </div>
+              <div id="detailPincodeResult" class="pincode-result-badge" style="display: none;"></div>
+            </div>
+
+            <!-- Quantity & Actions -->
+            <div class="detail-purchase-row">
+              <div class="quantity-picker">
+                <button type="button" onclick="adjustDetailQuantity(-1)"><i class="fa-solid fa-minus"></i></button>
+                <input type="number" id="detailQuantityInput" value="1" min="1" max="99" readonly>
+                <button type="button" onclick="adjustDetailQuantity(1)"><i class="fa-solid fa-plus"></i></button>
+              </div>
+              <button class="btn btn-primary btn-lg flex-1" id="detailAddToCartBtn" onclick="addCurrentProductToCart()">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="btn btn-outline" onclick="open360Modal(currentDetailProduct ? currentDetailProduct.id : '', event)" title="360° & AR Room Visualizer">
+                <i class="fa-solid fa-arrows-spin text-accent"></i> 360° / AR View
+              </button>
+              <button class="btn btn-outline" onclick="openPriceDropModal(currentDetailProduct ? currentDetailProduct.id : '', event)" title="Set Price Drop Alert">
+                <i class="fa-solid fa-bell text-warning"></i> Price Alert
+              </button>
+              <button class="btn btn-whatsapp" onclick="shareOnWhatsApp(currentDetailProduct ? currentDetailProduct.id : '')" title="Share on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> Share
+              </button>
+              <button class="btn btn-accent btn-lg" id="detailBuyNowBtn" onclick="buyCurrentProductNow()">
+                <i class="fa-solid fa-bolt"></i> Buy Now
+              </button>
+            </div>
+
+            <!-- Perks / Assurance Icons -->
+            <div class="detail-perks-grid">
+              <div class="perk-item">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <div>
+                  <strong>Free Delivery</strong>
+                  <p>On orders above ₹999</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <div>
+                  <strong>Cash on Delivery</strong>
+                  <p>Pay at your doorstep</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <i class="fa-solid fa-rotate-left"></i>
+                <div>
+                  <strong>30-Day Returns</strong>
+                  <p>Hassle-free guarantee</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frequently Bought Together Bundle Builder Container -->
+            <div id="productDetailBundleContainer" style="display: none;"></div>
+
+            <!-- Specifications Table -->
+            <div class="detail-specs-accordion">
+              <h3 class="specs-heading"><i class="fa-solid fa-list-check"></i> Technical Specifications</h3>
+              <div class="specs-table" id="detailSpecsTable">
+                <!-- Dynamically generated -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Reviews & Submission Section -->
+        <div class="product-reviews-container">
+          <h2 class="section-title"><i class="fa-regular fa-comments"></i> Customer Reviews & Ratings</h2>
+          <div class="reviews-grid-two-col mt-3">
+            <!-- Left: Reviews List -->
+            <div>
+              <div id="detailReviewsList">
+                <!-- Populated via products.js -->
+              </div>
+            </div>
+
+            <!-- Right: Submit Review Form -->
+            <div class="admin-card">
+              <h3>Write a Product Review</h3>
+              <p class="text-muted small mb-3">Share your experience with other shoppers.</p>
+              <form id="productReviewForm" onsubmit="submitProductReview(event)">
+                <div class="form-group">
+                  <label for="reviewAuthorName"><i class="fa-regular fa-user"></i> Your Name</label>
+                  <input type="text" id="reviewAuthorName" class="form-control" placeholder="e.g. Rahul Sharma">
+                </div>
+                <div class="form-group">
+                  <label for="reviewStarRating"><i class="fa-solid fa-star text-warning"></i> Rating Score</label>
+                  <select id="reviewStarRating" class="form-select">
+                    <option value="5">⭐⭐⭐⭐⭐ (5 Stars - Exceptional)</option>
+                    <option value="4">⭐⭐⭐⭐ (4 Stars - Very Good)</option>
+                    <option value="3">⭐⭐⭐ (3 Stars - Average)</option>
+                    <option value="2">⭐⭐ (2 Stars - Below Expectations)</option>
+                    <option value="1">⭐ (1 Star - Poor)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="reviewTitleInput">Review Headline</label>
+                  <input type="text" id="reviewTitleInput" class="form-control" placeholder="e.g. Exceeded all expectations!">
+                </div>
+                <div class="form-group">
+                  <label for="reviewCommentInput">Detailed Feedback *</label>
+                  <textarea id="reviewCommentInput" class="form-control" rows="3" placeholder="Describe the performance, packaging, and delivery speed..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="submitReviewBtn">
+                  <i class="fa-solid fa-paper-plane"></i> Submit Review
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div class="related-products-section">
+          <h2 class="section-title">Customers Also Viewed</h2>
+          <div class="product-grid" id="relatedProductGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 3: ORDER CHECKOUT & USER DETAILS PAGE     -->
+    <!-- ============================================== -->
+    <section id="view-checkout" class="app-view">
+      <div class="container checkout-container">
+        <div class="checkout-header">
+          <h1 class="checkout-title"><i class="fa-solid fa-shield-heart"></i> Secure Checkout</h1>
+          <p class="checkout-subtitle">Complete your details to place your order with fast delivery.</p>
+        </div>
+
+        <div class="checkout-grid">
+          <!-- Left: Details Form & Payment -->
+          <div class="checkout-form-column">
+            <!-- Step 1: User Contact & Shipping -->
+            <div class="checkout-card">
+              <div class="checkout-card-header">
+                <span class="step-num">1</span>
+                <h3>Shipping & Customer Details</h3>
+              </div>
+              <form id="checkoutDetailsForm" onsubmit="handleCheckoutFormSubmit(event)">
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label for="checkoutName"><i class="fa-regular fa-user"></i> Full Name *</label>
+                    <input type="text" id="checkoutName" class="form-control" placeholder="e.g. Alex Morgan" required>
+                  </div>
+                  <div class="form-group flex-1">
+                    <label for="checkoutPhone"><i class="fa-solid fa-phone"></i> Contact Phone *</label>
+                    <input type="tel" id="checkoutPhone" class="form-control" placeholder="e.g. +91 98490 12345" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="checkoutEmail"><i class="fa-regular fa-envelope"></i> Email Address (for order receipts) *</label>
+                  <input type="email" id="checkoutEmail" class="form-control" placeholder="e.g. user@ecommerce.com" required readonly>
+                </div>
+
+                <div class="form-group">
+                  <label for="checkoutAddress"><i class="fa-solid fa-location-dot"></i> Complete Delivery Address *</label>
+                  <textarea id="checkoutAddress" class="form-control" rows="3" placeholder="Flat / House No, Street Address, Landmark, City, State, PIN Code" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="checkoutInstructions"><i class="fa-solid fa-note-sticky"></i> Delivery Notes (Optional)</label>
+                  <input type="text" id="checkoutInstructions" class="form-control" placeholder="e.g. Ring doorbell or leave at security">
+                </div>
+              </form>
+            </div>
+
+            <!-- Step 2: Payment Method (Cash on Delivery Prominent) -->
+            <div class="checkout-card mt-4">
+              <div class="checkout-card-header">
+                <span class="step-num">2</span>
+                <h3>Payment Method</h3>
+              </div>
+
+              <div class="payment-options-group">
+                <!-- Aura Digital Wallet Radio -->
+                <label class="payment-method-card" id="payMethodWalletCard">
+                  <div class="payment-radio-wrap">
+                    <input type="radio" name="paymentMethod" value="Aura Wallet" onchange="handlePaymentMethodChange(this.value)">
+                    <div class="custom-radio"></div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-header-title">
+                      <strong><i class="fa-solid fa-wallet text-accent"></i> Aura Digital Wallet (1-Click Instant)</strong>
+                      <span class="badge badge-popular" id="checkoutWalletBadge">Balance: ₹2,500</span>
+                    </div>
+                    <p class="payment-desc">Zero-failure lightning payment directly from your pre-loaded Aura Wallet.</p>
+                  </div>
+                </label>
+
+                <!-- Cash on Delivery Radio -->
+                <label class="payment-method-card active" id="payMethodCODCard">
+                  <div class="payment-radio-wrap">
+                    <input type="radio" name="paymentMethod" value="Cash on Delivery" checked onchange="handlePaymentMethodChange(this.value)">
+                    <div class="custom-radio"></div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-header-title">
+                      <strong><i class="fa-solid fa-money-bill-wave text-success"></i> Cash on Delivery (COD)</strong>
+                      <span class="badge badge-popular">Recommended</span>
+                    </div>
+                    <p class="payment-desc">Pay safely with cash or UPI when your package arrives at your doorstep.</p>
+                  </div>
+                </label>
+
+                <!-- Online Card / Demo -->
+                <label class="payment-method-card" id="payMethodCardCard">
+                  <div class="payment-radio-wrap">
+                    <input type="radio" name="paymentMethod" value="Credit / Debit Card" onchange="handlePaymentMethodChange(this.value)">
+                    <div class="custom-radio"></div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-header-title">
+                      <strong><i class="fa-solid fa-credit-card text-info"></i> Credit / Debit Card / Net Banking</strong>
+                      <span class="badge badge-instant">Instant Confirmation</span>
+                    </div>
+                    <p class="payment-desc">Supports RuPay, Visa, Mastercard, and Net Banking.</p>
+                  </div>
+                </label>
+
+                <!-- UPI / Digital Wallet -->
+                <label class="payment-method-card" id="payMethodUPICard">
+                  <div class="payment-radio-wrap">
+                    <input type="radio" name="paymentMethod" value="UPI / Digital Wallet" onchange="handlePaymentMethodChange(this.value)">
+                    <div class="custom-radio"></div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-header-title">
+                      <strong><i class="fa-solid fa-mobile-screen-button text-warning"></i> UPI / QR Payment</strong>
+                      <span class="badge badge-instant">Fast QR / App</span>
+                    </div>
+                    <p class="payment-desc">Pay via Google Pay, PhonePe, Paytm, BHIM or UPI ID.</p>
+                  </div>
+                </label>
+              </div>
+
+              <!-- COD Assurance Alert -->
+              <div class="cod-assurance-alert" id="codAssuranceNotice">
+                <i class="fa-solid fa-shield-check"></i>
+                <div>
+                  <strong>Zero Advance Payment Required</strong>
+                  <p>Our courier partner will collect the exact total amount at the time of delivery. Please ensure you keep cash or UPI ready.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Order Summary Breakdown -->
+          <div class="checkout-summary-column">
+            <div class="checkout-summary-card">
+              <h3>Order Summary</h3>
+              <div class="checkout-items-list" id="checkoutItemsList">
+                <!-- Dynamically populated -->
+              </div>
+
+              <!-- Aura Coins Redemption Widget in Checkout -->
+              <div class="checkout-coins-box mb-3 p-2" id="checkoutCoinsRedeemBox" style="background: rgba(245, 158, 11, 0.08); border: 1px dashed rgba(245, 158, 11, 0.4); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span><i class="fa-solid fa-crown text-warning"></i> <strong>Redeem Aura Coins:</strong></span>
+                  <span class="text-warning font-bold" id="checkoutCoinsAvail">0 Coins</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <input type="range" id="checkoutCoinsSlider" min="0" max="0" step="50" value="0" style="flex: 1; accent-color: #f59e0b;" oninput="handleCheckoutCoinsChange(this.value)">
+                  <span id="checkoutCoinsValLabel" class="font-bold">0 Coins (-₹0)</span>
+                </div>
+              </div>
+
+              <div class="checkout-calc-table">
+                <div class="calc-row">
+                  <span>Subtotal</span>
+                  <span id="checkoutSubtotal">₹0.00</span>
+                </div>
+                <div class="calc-row text-success" id="checkoutDiscountRow" style="display: none;">
+                  <span>Coupon Discount</span>
+                  <span id="checkoutDiscount">-₹0.00</span>
+                </div>
+                <div class="calc-row text-warning" id="checkoutCoinsDiscountRow" style="display: none;">
+                  <span>Aura Coins Discount</span>
+                  <span id="checkoutCoinsDiscount">-₹0.00</span>
+                </div>
+                <div class="calc-row">
+                  <span>Estimated GST (8%)</span>
+                  <span id="checkoutTax">₹0.00</span>
+                </div>
+                <div class="calc-row">
+                  <span>Shipping & Delivery</span>
+                  <span id="checkoutShipping">₹99.00</span>
+                </div>
+                <hr class="summary-line">
+                <div class="calc-row total-row">
+                  <span>Total Amount</span>
+                  <span id="checkoutGrandTotal">₹0.00</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-block btn-lg btn-place-order" id="placeOrderBtn" onclick="submitOrderPlacement()">
+                <i class="fa-solid fa-lock"></i>
+                <span id="placeOrderBtnText">Confirm & Place Order</span>
+              </button>
+
+              <div class="checkout-trust-badges">
+                <span><i class="fa-solid fa-lock"></i> 256-Bit SSL Encrypted</span>
+                <span><i class="fa-solid fa-rotate-left"></i> Easy Returns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 4: ORDER CONFIRMED / SUCCESS NOTIFICATION -->
+    <!-- ============================================== -->
+    <section id="view-order-success" class="app-view">
+      <div class="container order-success-container">
+        <div class="success-card">
+          <div class="success-icon-animation">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <span class="success-badge">Order Placed Successfully!</span>
+          <h1 class="success-title">Thank You For Your Order!</h1>
+          <p class="success-subtitle">We have received your order and are getting it ready for shipment.</p>
+
+          <div class="success-order-meta">
+            <div class="meta-item">
+              <span class="meta-label">Order Number</span>
+              <strong class="meta-value text-accent" id="successOrderId">ORD-2026-XXXX</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Payment Method</span>
+              <strong class="meta-value" id="successPaymentMethod">Cash on Delivery</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Total Amount</span>
+              <strong class="meta-value" id="successOrderTotal">₹0.00</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Estimated Delivery</span>
+              <strong class="meta-value" id="successDeliveryDate">3-5 Business Days</strong>
+            </div>
+          </div>
+
+          <div class="success-actions-row">
+            <button class="btn btn-primary btn-lg" onclick="openLiveTrackingModal(window.lastPlacedOrderId)">
+              <i class="fa-solid fa-satellite-dish fa-fade"></i> Track Live Shipment
+            </button>
+            <button class="btn btn-outline btn-lg" onclick="openOrderInvoiceModal(window.lastPlacedOrderId)">
+              <i class="fa-solid fa-receipt"></i> View Tax Invoice
+            </button>
+            <button class="btn btn-secondary btn-lg" onclick="navigateTo('my-orders')">
+              <i class="fa-solid fa-box-open"></i> My Orders
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 5: VIEW MY ORDERS (CUSTOMER TRACKING)     -->
+    <!-- ============================================== -->
+    <section id="view-my-orders" class="app-view">
+      <div class="container orders-page-container">
+        <div class="orders-page-header">
+          <div>
+            <h1 class="section-title"><i class="fa-solid fa-box-open"></i> My Orders & Purchases</h1>
+            <p class="section-subtitle">Real-time GPS shipment tracking, status updates, and official GST tax invoices.</p>
+          </div>
+          <button class="btn btn-outline" onclick="loadMyOrdersList()">
+            <i class="fa-solid fa-rotate-right"></i> Refresh Orders
+          </button>
+        </div>
+
+        <!-- Quick Direct Order ID Lookup Bar -->
+        <div class="order-lookup-bar mb-3">
+          <div class="lookup-input-wrap">
+            <i class="fa-solid fa-magnifying-glass-location text-accent"></i>
+            <input type="text" id="orderIdLookupInput" placeholder="Enter Order ID (e.g. ORD-2026-XXXX) for Instant GPS Tracking...">
+            <button class="btn btn-primary" onclick="lookupOrderByIdInput()">
+              <i class="fa-solid fa-satellite-dish"></i> Track Order
+            </button>
+          </div>
+        </div>
+
+        <!-- Order Search and Filter Toolbar -->
+        <div class="orders-filter-toolbar">
+          <div class="order-search-box">
+            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+            <input type="text" id="orderSearchInput" placeholder="Search orders by ID or Product Name..." oninput="handleOrderSearch(this.value)">
+          </div>
+
+          <div class="orders-status-pills">
+            <button class="order-filter-pill active" data-status="All" onclick="filterMyOrdersByStatus('All')">All Orders</button>
+            <button class="order-filter-pill" data-status="Pending" onclick="filterMyOrdersByStatus('Pending')">Pending</button>
+            <button class="order-filter-pill" data-status="Shipped" onclick="filterMyOrdersByStatus('Shipped')">Shipped</button>
+            <button class="order-filter-pill" data-status="Delivered" onclick="filterMyOrdersByStatus('Delivered')">Delivered</button>
+          </div>
+        </div>
+
+        <div id="ordersListContainer" class="orders-list-grid">
+          <!-- Populated by orders.js -->
+        </div>
+
+        <div id="noOrdersState" class="no-results-state" style="display: none;">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <h3>You haven't placed any orders yet</h3>
+          <p>Browse our catalog across 15 categories and pick from top rated gear!</p>
+          <button class="btn btn-primary mt-3" onclick="navigateTo('home')">Start Shopping</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 6: USER LOGIN & AUTHENTICATION            -->
+    <!-- ============================================== -->
+    <section id="view-login" class="app-view">
+      <div class="container auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <div class="auth-icon-badge">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </div>
+            <h2>Sign In to AURA</h2>
+            <p>Access your orders, saved items, and personalized shopping experience.</p>
+          </div>
+
+          <!-- Quick 1-Click Demo Login Bar -->
+          <div class="demo-login-box">
+            <span class="demo-label"><i class="fa-solid fa-wand-magic-sparkles"></i> 1-Click Quick Demo Login:</span>
+            <div class="demo-buttons-row">
+              <button type="button" class="btn btn-demo-user" onclick="fillDemoUser()">
+                <i class="fa-regular fa-user"></i> Demo Customer
+              </button>
+              <button type="button" class="btn btn-demo-admin" onclick="fillDemoAdmin()">
+                <i class="fa-solid fa-shield-halved"></i> Demo Admin
+              </button>
+            </div>
+          </div>
+
+          <form id="loginForm" onsubmit="handleLoginFormSubmit(event)">
+            <div class="form-group">
+              <label for="loginEmail"><i class="fa-regular fa-envelope"></i> Email Address</label>
+              <input type="email" id="loginEmail" class="form-control" placeholder="user@ecommerce.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword"><i class="fa-solid fa-lock"></i> Password</label>
+              <div class="password-input-wrap">
+                <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+                <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('loginPassword', this)">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg mt-3" id="loginSubmitBtn">
+              Sign In
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            <p>Don't have an account yet? <a href="#register" onclick="navigateTo('register')">Create an Account</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 7: USER REGISTRATION PAGE                 -->
+    <!-- ============================================== -->
+    <section id="view-register" class="app-view">
+      <div class="container auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <div class="auth-icon-badge">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <h2>Create Your Account</h2>
+            <p>Join thousands of shoppers enjoying exclusive discounts & express delivery across India.</p>
+          </div>
+
+          <form id="registerForm" onsubmit="handleRegisterFormSubmit(event)">
+            <div class="form-group">
+              <label for="regName"><i class="fa-regular fa-user"></i> Full Name *</label>
+              <input type="text" id="regName" class="form-control" placeholder="Alex Morgan" required>
+            </div>
+
+            <div class="form-group">
+              <label for="regEmail"><i class="fa-regular fa-envelope"></i> Email Address *</label>
+              <input type="email" id="regEmail" class="form-control" placeholder="alex@example.com" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="regPhone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                <input type="tel" id="regPhone" class="form-control" placeholder="+91 98490 12345">
+              </div>
+              <div class="form-group flex-1">
+                <label for="regPassword"><i class="fa-solid fa-lock"></i> Password *</label>
+                <div class="password-input-wrap">
+                  <input type="password" id="regPassword" class="form-control" placeholder="At least 6 chars" required minlength="6">
+                  <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('regPassword', this)">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="regAddress"><i class="fa-solid fa-location-dot"></i> Default Delivery Address</label>
+              <input type="text" id="regAddress" class="form-control" placeholder="Flat No, Street, City, State, PIN Code">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg mt-3" id="regSubmitBtn">
+              Create My Account
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            <p>Already have an account? <a href="#login" onclick="navigateTo('login')">Sign In</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW 8: ADMIN PORTAL & DASHBOARD               -->
+    <!-- ============================================== -->
+    <section id="view-admin" class="app-view">
+      <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+          <div class="admin-sidebar-header">
+            <div class="admin-badge-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <h3>Admin Console</h3>
+              <p class="text-muted small">Store Management</p>
+            </div>
+          </div>
+
+          <nav class="admin-nav-links">
+            <button class="admin-nav-item active" data-tab="dashboard" onclick="switchAdminTab('dashboard')">
+              <i class="fa-solid fa-chart-pie"></i> Dashboard Overview
+            </button>
+            <button class="admin-nav-item" data-tab="products" onclick="switchAdminTab('products')">
+              <i class="fa-solid fa-boxes-stacked"></i> Products Inventory
+            </button>
+            <button class="admin-nav-item" data-tab="orders" onclick="switchAdminTab('orders')">
+              <i class="fa-solid fa-truck-ramp-box"></i> View All Orders
+            </button>
+            <button class="admin-nav-item" data-tab="customers" onclick="switchAdminTab('customers')">
+              <i class="fa-solid fa-users"></i> View Customers
+            </button>
+          </nav>
+
+          <div class="admin-sidebar-footer">
+            <button class="btn btn-outline-nav btn-block mb-2" onclick="navigateTo('home')">
+              <i class="fa-solid fa-store"></i> View Storefront
+            </button>
+            <button class="btn btn-danger-outline btn-block" onclick="logoutUser()">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Admin Logout
+            </button>
+          </div>
+        </aside>
+
+        <!-- Admin Content Area -->
+        <div class="admin-content-wrap">
+          
+          <!-- ADMIN TAB 1: DASHBOARD STATS -->
+          <div id="admin-tab-dashboard" class="admin-tab-pane active">
+            <div class="admin-header-row">
+              <div>
+                <h2>Store Performance Overview</h2>
+                <p class="text-muted">Real-time metrics, order volume, and revenue analytics (INR).</p>
+              </div>
+              <button class="btn btn-primary" onclick="openAddProductModal()">
+                <i class="fa-solid fa-plus"></i> Add New Product
+              </button>
+            </div>
+
+            <!-- Stats Metric Cards -->
+            <div class="admin-stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon-wrap bg-primary-glow">
+                  <i class="fa-solid fa-indian-rupee-sign"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Total Revenue</span>
+                  <strong class="stat-value" id="statTotalRevenue">₹0.00</strong>
+                  <span class="stat-trend text-success"><i class="fa-solid fa-arrow-trend-up"></i> Active orders</span>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon-wrap bg-info-glow">
+                  <i class="fa-solid fa-cart-flatbed"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Total Orders</span>
+                  <strong class="stat-value" id="statTotalOrders">0</strong>
+                  <span class="stat-trend" id="statOrdersTrend">Across all users</span>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon-wrap bg-accent-glow">
+                  <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Active Products</span>
+                  <strong class="stat-value" id="statTotalProducts">0</strong>
+                  <span class="stat-trend" id="statLowStockAlert">0 low stock</span>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon-wrap bg-warning-glow">
+                  <i class="fa-solid fa-user-group"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Registered Customers</span>
+                  <strong class="stat-value" id="statTotalCustomers">0</strong>
+                  <span class="stat-trend text-info">Registered accounts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Revenue Trend Chart -->
+            <div class="admin-card mb-4">
+              <div class="admin-card-header">
+                <h3><i class="fa-solid fa-chart-simple text-accent"></i> Revenue & Sales Trends (2026 in INR)</h3>
+              </div>
+              <div id="adminSalesGraphContainer">
+                <!-- Populated via admin.js -->
+              </div>
+            </div>
+
+            <!-- Recent Orders Table & Category Split -->
+            <div class="admin-grid-two-col mt-4">
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <h3>Recent Customer Orders</h3>
+                  <button class="btn btn-sm btn-outline" onclick="switchAdminTab('orders')">View All</button>
+                </div>
+                <div class="table-responsive">
+                  <table class="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminRecentOrdersTableBody">
+                      <!-- Populated via admin.js -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <h3>Category Inventory Breakdown</h3>
+                </div>
+                <div class="category-breakdown-list" id="adminCategoryBreakdownList">
+                  <!-- Populated via admin.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADMIN TAB 2: PRODUCTS INVENTORY (CRUD) -->
+          <div id="admin-tab-products" class="admin-tab-pane">
+            <div class="admin-header-row">
+              <div>
+                <h2>Product Inventory & Management</h2>
+                <p class="text-muted">Create, update stock, edit pricing, or remove store products.</p>
+              </div>
+              <button class="btn btn-primary" onclick="openAddProductModal()">
+                <i class="fa-solid fa-plus"></i> Add New Product
+              </button>
+            </div>
+
+            <div class="admin-card mt-3">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Original</th>
+                      <th>Stock Status</th>
+                      <th>Badge</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminProductsTableBody">
+                    <!-- Populated via admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADMIN TAB 3: VIEW ALL ORDERS & STATUS UPDATE -->
+          <div id="admin-tab-orders" class="admin-tab-pane">
+            <div class="admin-header-row">
+              <div>
+                <h2>Customer Orders Management</h2>
+                <p class="text-muted">Change order status (Shipped, Delivered, etc.) and inspect customer shipping info.</p>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <button class="btn btn-outline" onclick="exportOrdersCSV()">
+                  <i class="fa-solid fa-file-csv"></i> Export to CSV
+                </button>
+                <div class="admin-order-filter-wrap">
+                  <select id="adminOrderFilterSelect" class="form-select" onchange="filterAdminOrders(this.value)">
+                    <option value="All">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Out for Delivery">Out for Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card mt-3">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Date</th>
+                      <th>Customer Info</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Payment</th>
+                      <th>Update Status</th>
+                      <th>Invoice</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminOrdersTableBody">
+                    <!-- Populated via admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADMIN TAB 4: VIEW CUSTOMERS -->
+          <div id="admin-tab-customers" class="admin-tab-pane">
+            <div class="admin-header-row">
+              <div>
+                <h2>Registered Customers Directory</h2>
+                <p class="text-muted">List of all registered shopper accounts, contact info, and lifetime purchase history.</p>
+              </div>
+              <button class="btn btn-outline" onclick="loadAdminCustomers()">
+                <i class="fa-solid fa-rotate-right"></i> Refresh Roster
+              </button>
+            </div>
+
+            <div class="admin-card mt-3">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Delivery Address</th>
+                      <th>Orders Placed</th>
+                      <th>Lifetime Spent</th>
+                      <th>Joined Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminCustomersTableBody">
+                    <!-- Populated via admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- FLOATING WIDGETS: LUCKY WHEEL & AI SUPPORT CHAT -->
+  <!-- ============================================== -->
+
+  <!-- Lucky Wheel Floating Trigger Button -->
+  <button class="floating-wheel-trigger" id="luckyWheelTriggerBtn" onclick="openLuckyWheelModal()" title="Spin the Lucky Wheel!">
+    <i class="fa-solid fa-dharmachakra"></i>
+  </button>
+
+  <!-- Lucky Wheel Modal -->
+  <div class="modal-overlay" id="luckyWheelModalOverlay">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-gift text-warning"></i> Lucky Discount Wheel</h3>
+        <button class="modal-close-btn" onclick="closeLuckyWheelModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body lucky-wheel-container">
+        <p class="text-muted small">Spin the wheel to unlock exclusive surprise coupon discounts for your cart!</p>
+        <div class="lucky-wheel-box">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="280" height="280"></canvas>
+        </div>
+        <button class="btn btn-primary btn-block btn-lg" id="spinWheelBtn" onclick="spinLuckyWheel()">
+          <i class="fa-solid fa-arrows-rotate"></i> Spin to Win!
+        </button>
+        <div id="wheelResultBox" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Customer Support Trigger -->
+  <button class="floating-chat-trigger" id="chatAssistantTriggerBtn" onclick="toggleChatAssistant()" title="AI Customer Support">
+    <span class="chat-notification-dot" id="chatNotificationDot"></span>
+    <i class="fa-solid fa-comments"></i>
+  </button>
+
+  <!-- Real-Time AI Support Chat Widget -->
+  <div class="chat-assistant-widget" id="chatAssistantWidget">
+    <div class="chat-widget-header">
+      <div class="chat-bot-info">
+        <span class="bot-avatar"><i class="fa-solid fa-robot"></i></span>
+        <div>
+          <strong style="font-size: 0.95rem;">AuraBot Assistant</strong>
+          <p class="text-success small" style="font-size: 0.72rem; margin: 0;"><i class="fa-solid fa-circle" style="font-size: 6px;"></i> Online 24/7 Support</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" onclick="toggleChatAssistant()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="chat-messages-container" id="chatMessagesContainer">
+      <div class="chat-msg bot-msg">
+        <span class="bot-avatar"><i class="fa-solid fa-robot"></i></span>
+        <div class="msg-bubble">
+          👋 Hello! I am your <strong>AURA Shopping Assistant</strong>.<br>
+          How can I help you today? Ask me about <strong>Cash on Delivery</strong>, <strong>shipping</strong>, <strong>return policies</strong>, or <strong>product recommendations</strong>!
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Question Chips -->
+    <div class="chat-quick-suggestions">
+      <button class="chat-chip-btn" onclick="sendChatMessage('How does Cash on Delivery (COD) work?')">💵 COD Policy</button>
+      <button class="chat-chip-btn" onclick="sendChatMessage('Check shipping times & free delivery')">🚚 Delivery Times</button>
+      <button class="chat-chip-btn" onclick="sendChatMessage('What is the return and replacement policy?')">🔄 Return Policy</button>
+      <button class="chat-chip-btn" onclick="sendChatMessage('Can you recommend top laptops or mobiles?')">💻 Best Laptops</button>
+    </div>
+
+    <!-- Message Input Row -->
+    <form class="chat-input-row" onsubmit="event.preventDefault(); sendChatMessage();">
+      <input type="text" id="chatMessageInput" placeholder="Type your message..." autocomplete="off">
+      <button type="submit" class="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: INSTANT QUICK PRODUCT PREVIEW           -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="quickViewModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-bolt text-accent"></i> Quick Product Preview</h3>
+        <button class="modal-close-btn" onclick="closeQuickViewModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="quickViewModalBody">
+        <!-- Populated dynamically via advanced_features.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: PRODUCT COMPARISON MATRIX               -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="compareModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-scale-balanced text-accent"></i> Side-by-Side Comparison</h3>
+        <button class="modal-close-btn" onclick="closeCompareModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="compareMatrixTable">
+        <!-- Populated dynamically via advanced_features.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ADD / EDIT PRODUCT                      -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3 id="productModalTitle"><i class="fa-solid fa-box"></i> Add New Product</h3>
+        <button class="modal-close-btn" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="productModalForm" onsubmit="handleProductFormSubmit(event)">
+        <input type="hidden" id="editProductId" value="">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="prodFormTitle">Product Title *</label>
+              <input type="text" id="prodFormTitle" class="form-control" placeholder="e.g. Apple iPhone 15 Pro Max" required>
+            </div>
+            <div class="form-group flex-1">
+              <label for="prodFormCategory">Category *</label>
+              <select id="prodFormCategory" class="form-select" required>
+                <option value="Mobiles">Mobiles</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Headphones & Earphones">Headphones & Earphones</option>
+                <option value="Smart Watches">Smart Watches</option>
+                <option value="Televisions">Televisions</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Bags">Bags</option>
+                <option value="Books">Books</option>
+                <option value="Home & Furniture">Home & Furniture</option>
+                <option value="Kitchen Appliances">Kitchen Appliances</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Cameras">Cameras</option>
+                <option value="Electronic Accessories">Electronic Accessories</option>
+                <option value="Beauty & Personal Care">Beauty & Personal Care</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="prodFormPrice">Selling Price (₹) *</label>
+              <input type="number" step="0.01" id="prodFormPrice" class="form-control" placeholder="4999.00" required>
+            </div>
+            <div class="form-group flex-1">
+              <label for="prodFormOrigPrice">Original Price (₹)</label>
+              <input type="number" step="0.01" id="prodFormOrigPrice" class="form-control" placeholder="6999.00">
+            </div>
+            <div class="form-group flex-1">
+              <label for="prodFormStock">Stock Units *</label>
+              <input type="number" id="prodFormStock" class="form-control" value="25" min="0" required>
+            </div>
+            <div class="form-group flex-1">
+              <label for="prodFormBadge">Badge Tag</label>
+              <input type="text" id="prodFormBadge" class="form-control" placeholder="e.g. Bestseller, Flagship, New">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="prodFormImage">Product Image URL (High-Res Unsplash/Web) *</label>
+            <input type="url" id="prodFormImage" class="form-control" placeholder="https://images.unsplash.com/..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="prodFormDesc">Product Description *</label>
+            <textarea id="prodFormDesc" class="form-control" rows="3" placeholder="Describe the item's key features, materials, and benefits..." required></textarea>
+          </div>
+
+          <div class="form-check mt-2">
+            <input type="checkbox" id="prodFormFeatured">
+            <label for="prodFormFeatured">Feature this product on homepage banner & highlights</label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveProductBtn">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: ORDER INVOICE & RECEIPT PREVIEW         -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="invoiceModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-receipt text-accent"></i> Official Tax Invoice</h3>
+        <div class="invoice-header-actions">
+          <button class="btn btn-sm btn-outline" onclick="printInvoice()"><i class="fa-solid fa-print"></i> Print / Save PDF</button>
+          <button class="modal-close-btn" onclick="closeInvoiceModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="modal-body invoice-printable-area" id="invoicePrintableArea">
+        <!-- Populated dynamically via orders.js / advanced_features.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: 360° INTERACTIVE & AR ROOM SIMULATOR    -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="product360ModalOverlay">
+    <div class="modal-card modal-lg product-360-modal-card">
+      <div class="modal-header">
+        <div class="modal-header-title-row">
+          <h3><i class="fa-solid fa-arrows-spin text-accent fa-spin-pulse"></i> <span id="modal360ProductTitle">360° 3D & AR Room Visualizer</span></h3>
+          <span class="badge badge-popular">Interactive Mode</span>
+        </div>
+        <button class="modal-close-btn" onclick="close360Modal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body p-0">
+        <!-- Mode Tabs -->
+        <div class="viewer-tabs-bar">
+          <button class="viewer-tab active" id="tab360Spin" onclick="switchViewerMode('spin')">
+            <i class="fa-solid fa-arrows-rotate"></i> 360° Studio Spin
+          </button>
+          <button class="viewer-tab" id="tabArRoom" onclick="switchViewerMode('ar')">
+            <i class="fa-solid fa-cube"></i> View In Room / AR Scale
+          </button>
+        </div>
+
+        <!-- 360 Spin View Container -->
+        <div id="viewer360SpinContainer" class="viewer-mode-view active">
+          <div class="spin-canvas-stage" id="spinCanvasStage">
+            <div class="spin-reflection-overlay"></div>
+            <img id="spinProductImage" src="" alt="360 Product">
+            <div class="spin-drag-hint" id="spinDragHint">
+              <i class="fa-solid fa-hand-pointer"></i> Drag left/right to rotate 360°
+            </div>
+            <!-- Interactive Angle Quick Pointers -->
+            <div class="spin-angle-presets">
+              <button class="angle-btn active" onclick="setSpinAngle(0)">Front</button>
+              <button class="angle-btn" onclick="setSpinAngle(45)">45&deg; Angle</button>
+              <button class="angle-btn" onclick="setSpinAngle(90)">Profile</button>
+              <button class="angle-btn" onclick="setSpinAngle(180)">Back</button>
+              <button class="angle-btn" onclick="setSpinAngle(270)">Left Side</button>
+            </div>
+          </div>
+          <div class="spin-controls-bar">
+            <button class="btn btn-sm btn-outline" onclick="toggleAutoRotate()" id="autoRotateBtn">
+              <i class="fa-solid fa-play"></i> Auto Rotate
+            </button>
+            <div class="rotation-slider-wrap">
+              <label><i class="fa-solid fa-compass"></i> Rotation:</label>
+              <input type="range" id="spinAngleSlider" min="0" max="360" value="0" oninput="handleSpinSlider(this.value)">
+              <span id="spinDegreesLabel">0&deg;</span>
+            </div>
+            <div class="zoom-slider-wrap">
+              <label><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom:</label>
+              <input type="range" id="spinZoomSlider" min="80" max="180" value="100" oninput="handleSpinZoom(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- AR Room Simulator Container -->
+        <div id="viewerArRoomContainer" class="viewer-mode-view">
+          <div class="ar-room-stage" id="arRoomStage">
+            <!-- Room Environment Background -->
+            <div class="ar-room-bg" id="arRoomBg" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80');"></div>
+            <!-- Scaled Placed Hologram Product -->
+            <div class="ar-placed-item" id="arPlacedItem">
+              <img id="arProductImage" src="" alt="Placed Product">
+              <div class="ar-dimension-ruler" id="arDimensionRuler">
+                <span>Scale: <strong id="arScaleLabel">100% (True-to-Scale)</strong></span>
+              </div>
+            </div>
+            <!-- Room Environment Selector Overlay -->
+            <div class="ar-env-selector">
+              <span class="ar-env-title"><i class="fa-solid fa-couch"></i> Room Backdrop:</span>
+              <button class="env-pill active" onclick="setArEnvironment('living_room')">Living Room</button>
+              <button class="env-pill" onclick="setArEnvironment('tech_desk')">Minimalist Desk</button>
+              <button class="env-pill" onclick="setArEnvironment('creator_studio')">Creator Studio</button>
+              <button class="env-pill" onclick="setArEnvironment('cyberpunk')">Cyberpunk Setup</button>
+            </div>
+          </div>
+          <div class="ar-controls-bar">
+            <div class="ar-slider-wrap">
+              <label><i class="fa-solid fa-up-right-and-down-left-from-center"></i> Object Scale:</label>
+              <input type="range" id="arScaleSlider" min="50" max="150" value="100" oninput="handleArScale(this.value)">
+              <span id="arScaleValue">100%</span>
+            </div>
+            <div class="ar-slider-wrap">
+              <label><i class="fa-solid fa-sun"></i> Ambient Light:</label>
+              <input type="range" id="arLightSlider" min="40" max="140" value="100" oninput="handleArLight(this.value)">
+            </div>
+            <button class="btn btn-primary btn-sm" id="arAddToCartBtn" onclick="addCurrent360ProductToCart()">
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: AI VISUAL CAMERA / PHOTO MATCH SEARCH    -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="visualSearchModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-camera text-accent"></i> AI Visual Search (Search by Photo)</h3>
+        <button class="modal-close-btn" onclick="closeVisualSearchModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <!-- Photo Upload Dropzone -->
+        <div class="visual-dropzone" id="visualDropzone" onclick="triggerVisualFileInput()">
+          <input type="file" id="visualFileInput" accept="image/*" style="display: none;" onchange="handleVisualFileUpload(event)">
+          <div class="dropzone-inner">
+            <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+            <h4>Drag & Drop any product photo here</h4>
+            <p>Or click to browse from your device &bull; Supports JPG, PNG, WEBP</p>
+          </div>
+        </div>
+
+        <!-- Sample Demo Quick-Try Chips -->
+        <div class="visual-sample-chips mt-3">
+          <span class="sample-label"><i class="fa-solid fa-wand-magic-sparkles text-warning"></i> Or try sample photo queries:</span>
+          <div class="chips-row">
+            <button class="sample-chip" onclick="searchBySamplePhoto('Titanium Smartphone', 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&q=80')">
+              📱 Smartphone
+            </button>
+            <button class="sample-chip" onclick="searchBySamplePhoto('MacBook Pro Laptop', 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&q=80')">
+              💻 Laptop
+            </button>
+            <button class="sample-chip" onclick="searchBySamplePhoto('Noise Cancelling Headphones', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80')">
+              🎧 Headphones
+            </button>
+            <button class="sample-chip" onclick="searchBySamplePhoto('Ultra Smart Watch', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80')">
+              ⌚ Smartwatch
+            </button>
+            <button class="sample-chip" onclick="searchBySamplePhoto('PlayStation Gaming Console', 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80')">
+              🎮 Gaming
+            </button>
+          </div>
+        </div>
+
+        <!-- AI Visual Match Results Area -->
+        <div id="visualSearchResultsContainer" class="visual-results-container mt-4" style="display: none;">
+          <div class="visual-results-header">
+            <h4><i class="fa-solid fa-circle-check text-success"></i> Visual Matches Found</h4>
+            <span class="badge badge-popular" id="visualMatchCount">0 items</span>
+          </div>
+          <div class="visual-results-grid" id="visualResultsGrid">
+            <!-- Rendered dynamically via advanced_features.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: AURA VIP REWARDS & COINS PASSBOOK       -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="vipClubModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-crown text-warning"></i> AURA VIP Club & Rewards Portal</h3>
+        <button class="modal-close-btn" onclick="closeVipClubModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="vipClubModalBody">
+        <!-- Populated dynamically via advanced_features.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: DIGITAL AURA WALLET & GIFT CARDS        -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="auraWalletModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-wallet text-accent"></i> Aura Digital Wallet & Gift Cards</h3>
+        <button class="modal-close-btn" onclick="closeAuraWalletModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="auraWalletModalBody">
+        <!-- Populated dynamically via advanced_features.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: PRICE DROP & BACK-IN-STOCK ALERT        -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="priceDropModalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-bell text-warning"></i> Set Instant Price Drop Alert</h3>
+        <button class="modal-close-btn" onclick="closePriceDropModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert-prod-summary" id="alertProdSummary">
+          <!-- Populated dynamically -->
+        </div>
+        <form onsubmit="handlePriceDropAlertSubmit(event)" class="mt-3">
+          <input type="hidden" id="alertProductId">
+          <div class="form-group">
+            <label for="alertTargetPrice">Target Alert Price:</label>
+            <div class="input-with-currency">
+              <span class="input-currency-prefix" id="alertCurrencyPrefix">₹</span>
+              <input type="number" id="alertTargetPrice" class="form-control" placeholder="e.g. 119999" required>
+            </div>
+            <small class="text-muted">We will automatically notify you when the price drops to or below this amount.</small>
+          </div>
+          <div class="form-group">
+            <label for="alertUserEmail">Notification Email Address *</label>
+            <input type="email" id="alertUserEmail" class="form-control" placeholder="your.name@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="alertUserPhone">WhatsApp / SMS Mobile (Optional)</label>
+            <input type="tel" id="alertUserPhone" class="form-control" placeholder="+91 98765 43210">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block mt-3">
+            <i class="fa-solid fa-bell"></i> Confirm Price Drop Alert
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: REAL-TIME SHIPMENT GPS TRACKING         -->
+  <!-- ============================================== -->
+  <div class="modal-overlay" id="liveTrackingModalOverlay">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-satellite-dish text-accent"></i> Real-Time Shipment & GPS Tracking</h3>
+        <button class="modal-close-btn" onclick="closeLiveTrackingModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="liveTrackingModalBody">
+        <!-- Populated dynamically via orders.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- LIVE FOMO SOCIAL PROOF NOTIFICATION CONTAINER  -->
+  <!-- ============================================== -->
+  <div class="fomo-toast-container" id="fomoToastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-inner">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <i class="fa-solid fa-bolt"></i>
+          <span>AURA STORE</span>
+        </div>
+        <p>Your premier destination for modern technology, precision gadgets, and luxury essentials. Safe checkout with Cash on Delivery across India.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Services</h4>
+        <ul>
+          <li><a href="#home" onclick="navigateTo('home')">Catalog & Deals</a></li>
+          <li><a href="#my-orders" onclick="navigateTo('my-orders')">Track Your Order</a></li>
+          <li><a href="javascript:void(0)" onclick="showToast('Free shipping applies on all orders above ₹999!', 'info')">Shipping Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="showToast('Cash on Delivery is available across all serviceable Indian PIN codes.', 'info')">Cash on Delivery Info</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Access</h4>
+        <ul>
+          <li><a href="#login" onclick="navigateTo('login')">User Login</a></li>
+          <li><a href="#register" onclick="navigateTo('register')">Create Account</a></li>
+          <li><a href="#login" onclick="fillDemoAdmin(); navigateTo('login');">Admin Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Payment & Trust</h4>
+        <div class="footer-payment-tags">
+          <span class="pay-tag"><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</span>
+          <span class="pay-tag"><i class="fa-solid fa-credit-card"></i> UPI / RuPay</span>
+          <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+          <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+          <span class="pay-tag"><i class="fa-solid fa-shield"></i> SSL Secured</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 AURA E-Commerce</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/advanced_features.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
