@@ -1,0 +1,24 @@
+{
+  "name": "ecommerce-major-project",
+  "version": "1.0.0",
+  "description": "Full Stack E-Commerce Major Project with User and Admin Portals",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "fullstack",
+    "express",
+    "vanilla-js",
+    "user-module",
+    "admin-module"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
